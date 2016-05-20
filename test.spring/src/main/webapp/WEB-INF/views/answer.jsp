@@ -10,7 +10,7 @@
 	  <title>回答画面</title>
 	</head>
 	<body>
-	<div id="main">
+	<div id="header">
 	<h1>webテスト</h1>
 	<h2>解答</h2>
     </div>
