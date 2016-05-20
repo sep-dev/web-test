@@ -1,0 +1,36 @@
+@charset "utf-8";
+	body {
+	width: 980px;
+	margin: 0 auto;
+	padding:0;			}
+
+	#main h1{
+	background-color: #F0F0F0;
+	font-size: 40px;
+	text-align: center;	}
+
+ 	#main h2{
+	background-color: #F0F0F0;
+	font-size: 24px;
+	text-align: center;	}
+
+	p{
+	margin-top: 0;
+	line-height: 1.6;
+	font-size: 16px;    }
+
+	#sub{
+	padding: 6px 20px;
+	font-size: 1.0em;	}
+
+	footer{
+	background-color: #F0F0F0;
+	padding: 10px 0;
+	text-align: center;	}
+
+	#question{
+	background-color:FFFFCC ;
+	text-align: center;	}
+
+	#post{
+	text-align: center;	}
