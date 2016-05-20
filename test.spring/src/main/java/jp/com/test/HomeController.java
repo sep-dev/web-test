@@ -16,9 +16,14 @@ public class HomeController {
 	//データベース接続
 	@Autowired
 	   private JdbcTemplate jdbcTemplate;
+	@RequestMapping(value = "/E", method = RequestMethod.GET)
+    public String home( Model model) {
+       FormModel fm = new FormModel();
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	 public String home( Model model) {
+       return "home";
+   }
+	@RequestMapping(value = "/Q", method = RequestMethod.GET)
+	 public String question( Model model) {
 		FormModel fm = new FormModel();
 		int id = fm.getId();
 
@@ -34,14 +39,14 @@ public class HomeController {
 
 		return "question";
 	}
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	 public String home(FormModel fm, Model model) {
+	@RequestMapping(value = "/A", method = RequestMethod.POST)
+	 public String answer(FormModel fm, Model model) {
 
-	return "kotae";
+	return "answer";
 	 }
 
-	@RequestMapping(value = "ans/", method = RequestMethod.GET)
-	public String end( FormModel fm,Model model){
+	@RequestMapping(value = "/A", method = RequestMethod.GET)
+	public String answer_form( FormModel fm,Model model){
 		int id = fm.getId();
 		List<Map<String,Object>>list = jdbcTemplate.queryForList("select * from entrytbl");
 		List<Map<String,Object>>ans = jdbcTemplate.queryForList("select * from entrytbl where id="+id);
@@ -49,6 +54,6 @@ public class HomeController {
 		model.addAttribute("ans",ans);
 
 
-		return "kotae";
+		return "answer";
 	}
 }
