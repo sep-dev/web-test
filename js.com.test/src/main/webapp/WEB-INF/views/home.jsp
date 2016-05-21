@@ -21,6 +21,8 @@
 
      </div>
      <div id = "box3">
+     <input type = "submit" value = "送信">
+     <input type = "button" value = "一覧画面">
      </div>
   <div id = "footer">ふったー</div>
 
