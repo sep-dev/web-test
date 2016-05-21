@@ -24,9 +24,8 @@
 	        </ol>
 	    </div>
 	 </c:forEach><!-- 設問出力ここまで -->
-	 <div id = "footer">ふったー</div>
-
 </div>
+<div id = "footer">ふったー</div>
 </form:form>
 </body>
 

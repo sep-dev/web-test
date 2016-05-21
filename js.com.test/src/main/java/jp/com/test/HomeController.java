@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,16 +18,22 @@ public class HomeController {
 	@Autowired
 	   private JdbcTemplate jdbcTemplate;
 
-	@RequestMapping(value = "/E" ,  method = RequestMethod.GET)
+	@RequestMapping(value = "/" ,  method = RequestMethod.GET)
 	public String entry(Model model){
 	    return "home";
 	}
+   @RequestMapping(value = "/" ,  method = RequestMethod.POST)
+    public String entry_form(@ModelAttribute FormModel fm,Model model){
+       jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (\"aaa\",\"aaa\",\"a\",\"a\",\"a\",\"a\");");
+       return "home";
+    }
 	@RequestMapping(value = "/Q", method = RequestMethod.GET)
 	 public String home( Model model) {
 		FormModel fm = new FormModel();
 
 		model.addAttribute("formModel",fm);
 		List<Map<String,Object>>list = jdbcTemplate.queryForList("select * from entrytbl");
+
 		model.addAttribute("list",list);
 
 		return "question";

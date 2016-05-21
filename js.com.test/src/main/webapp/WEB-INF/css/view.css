@@ -9,7 +9,8 @@ div
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
-    width:970px;
+    padding:20px;
+    width:95%;
     height:auto;
     border:solid 1px;
 }
@@ -66,17 +67,19 @@ body
         }
     #box2
     {
-    transition-duration:1s;
     height:49.6%;
     width:46.5%;
     margin:auto;
     border:solid 1px;
     float:right;
     }
-         #Choices
+         #select
          {
-         margin-top:10px;
-         padding-bottom:5px;
+         margin:8px;
+         width:75%;
+         }
+         #check
+         {
          }
     #box3
     {
@@ -89,6 +92,7 @@ body
     }
          #submit
          {
+
          width:100%;
          margin-top:38px;
          padding:30px 200px;
@@ -101,6 +105,7 @@ body
          }
     #box4
     {
+    clear:both;
     }
     #footer
     {
@@ -116,7 +121,7 @@ body
    /* 表示領域が980px以下の場合に適用するスタイル */
    div#header
    {
-   width: 100%;
+
    }
 	   div#boxA
 	   {
