@@ -13,9 +13,6 @@
 <div id ="header"><h1>webテスト<br>問題集</h1></div>
 <form:form modelAttribute= "formModel">
 <div id = "boxA">
-    <c:forEach items = "${Entrylist}" var="i" varStatus="loop" >
-    <p>${i.select1}</p>
-    </c:forEach>
      <c:forEach begin="1" end="5" step="1" varStatus="status"><!-- 設問出力 -->
 	    <div id="question"><!-- 出題テンプレート -->
 	        <div id="q_title"><h1>第${status.index}問</h1></div>

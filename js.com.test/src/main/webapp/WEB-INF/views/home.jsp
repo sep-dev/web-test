@@ -1,4 +1,3 @@
-@@ -0,0 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
  <% request.setCharacterEncoding("UTF-8");  %>
@@ -8,23 +7,21 @@
 <html>
 <head>
  <title>出題画面</title>
+
     <meta charset="UTF-8">
-    <style type="text/css"></style>
+    <style type="text/css"><%@include file="../css/view.css" %></style>
 </head>
 <body>
     <div id ="header"><h1>webテスト<br>問題集</h1></div>
     <div id = "boxA">
-     <c:forEach begin="1" end="*" step="1" varStatus="status"var="item" ><!-- 設問出力 -->
-     <div id="question"><!-- 出題テンプレート -->
-         <div id="q_title"><h1>第${status.index}問</h1></div>
-         <p>${item.氏名}</p><!-- 設問本文 -->
-         <ol>
-             <c:forEach begin="1" end="*" step="1" varStatus="check"items="${list}"var="item">
-                 <li><label><input type = "radio" name = "radio${status.index}"></label></li>
-             </c:forEach>
-         </ol>
+     <div id="box1">
+
      </div>
-  </c:forEach><!-- 設問出力ここまで -->
+     <div id = "box2">
+
+     </div>
+     <div id = "box3">
+     </div>
   <div id = "footer">ふったー</div>
 
 </div>
@@ -32,4 +29,3 @@
 
 
 </html>
-\ No newline at end of file
