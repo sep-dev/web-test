@@ -65,6 +65,7 @@ public class HomeController {
 	 public String home( Model model) {
 		FormModel fm = new FormModel();
 		model.addAttribute("formModel",fm);
+		//新しい配列の作成
 		List<String> checkradio= new ArrayList<String>();
 		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from entrytbl");
 		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from checktbl");
@@ -89,11 +90,11 @@ public class HomeController {
 		//正解が1つのとき
 		if(set==1){
 		    checkradio.add("radio");
-		//正解が複数のとき
+
 		}else if(set == 0){
             checkradio.add("null");
-        }
-		else{
+       //正解が複数のとき
+		}else{
 		    checkradio.add("checkbox");
 			}
 		}

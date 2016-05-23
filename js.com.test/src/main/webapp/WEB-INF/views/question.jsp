@@ -5,7 +5,7 @@
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
- <title>問題画面</title>
+ <title>出題画面</title>
     <meta charset="UTF-8">
     <style type="text/css"><%@include file="../css/view.css" %></style>
 </head>
