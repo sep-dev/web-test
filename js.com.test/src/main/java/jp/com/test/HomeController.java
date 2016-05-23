@@ -63,28 +63,47 @@ public class HomeController {
 	@RequestMapping(value = "/Q", method = RequestMethod.GET)
 	 public String home( Model model) {
 		FormModel fm = new FormModel();
-
 		model.addAttribute("formModel",fm);
-		List<Map<String,Object>>entrylist = jdbcTemplate.queryForList("select * from entrytbl");
+		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from entrytbl");
+		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from checktbl");
+		model.addAttribute("list",entrylist);
+		//entrylistの数を参考に、順番に変数numに数値を代入
+		for(int num=0;num<entrylist.size();num++){
+			System.out.print(num);
+			int check1 = (Integer) checklist.get(num).get("check1");
+			int check2 = (Integer) checklist.get(num).get("check2");
+			int check3 = (Integer) checklist.get(num).get("check3");
+			int check4 = (Integer) checklist.get(num).get("check4");
+		//if文でそれぞれの成否確認
+			int set = 0;
+		if(check1==1){set+=1;}
 
-		model.addAttribute("entrylist",entrylist);
+		if(check2==1){set+=1;}
 
+		if(check3==1){set+=1;}
+
+		if(check4==1){set+=1;}
+
+		//正解が1つのとき
+		if(set==1){
+			model.addAttribute("button","radio");
+		//正解が複数のとき
+		}else{
+			model.addAttribute("button","checkbox");
+			}
+		}
 		return "question";
 	}
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)
-	 public String home(FormModel fm, Model model) {
-
-	return "answer";
+	public String home(FormModel fm, Model model) {
+	return "question";
 	 }
-
 	@RequestMapping(value = "/A", method = RequestMethod.GET)
 	public String end( FormModel fm,Model model){
 		List<Map<String,Object>>entrylist = jdbcTemplate.queryForList("select * from entrytbl");
 		List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
 		model.addAttribute("entrylist",entrylist);
 		model.addAttribute("checklist",checklist);
-
-
 		return "answer";
 	}
 

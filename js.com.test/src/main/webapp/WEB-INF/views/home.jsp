@@ -33,7 +33,7 @@
      </div>
      <div id= "box4"></div>
 </div>
-<div id = "footer">ふったー${delete}</div>
+<div id = "footer">君の問題を作ろう${delete}</div>
 </form:form>
 </body>
 </html>
