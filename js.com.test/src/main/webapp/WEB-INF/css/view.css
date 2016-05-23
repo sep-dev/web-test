@@ -151,3 +151,11 @@ body
 	       width:98%
 	       }
 }
+/*汎用設定*/
+error{/*エラー時に表示する文字*/
+    color:#ff0000;
+    margin-left:5px;
+}
+#button{/*submitとbuttonの表示設定*/
+
+}

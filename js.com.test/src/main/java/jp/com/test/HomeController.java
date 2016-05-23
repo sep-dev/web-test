@@ -1,9 +1,12 @@
 package jp.com.test;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,30 +17,30 @@ public class HomeController {
 	//データベース接続
 	@Autowired
 	   private JdbcTemplate jdbcTemplate;
-
 	@RequestMapping(value = "/" ,  method = RequestMethod.GET)
 	public String entry(Model model){
 	    FormModel fm  = new FormModel();
 	    model.addAttribute("FormModel", fm);
 	    model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
-
 	    return "home";
 	}
    @RequestMapping(value = "/" ,  method = RequestMethod.POST)
-    public String entry_form(@ModelAttribute FormModel fm,Model model){
-       
-       
-       jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (?,?,?,?,?,?);"
-               ,fm.getTitle(),fm.getText(),fm.getSelect1(),fm.getSelect2(),fm.getSelect3(),fm.getSelect4());
-       jdbcTemplate.update("insert into Checktbl (check1,check2,check3,check4) VALUE (?,?,?,?)"
-               ,fm.isCheck1(),fm.isCheck2(),fm.isCheck3(),fm.isCheck4());
-       System.out.print(fm.getTitle()+"  ");
-       System.out.print(fm.getText()+"  ");
-       System.out.print(fm.getSelect1()+"  ");
-       System.out.print(fm.getSelect2()+"  ");
-       System.out.print(fm.getSelect3()+"  ");
-       System.out.print(fm.getSelect4()+"\n");
-       return "home";
+    public String entry_form(@Valid  @ModelAttribute FormModel fm,BindingResult result,Model model){
+       model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+       if(result.hasErrors()){
+           return "home";
+       }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
+               fm.isCheck4() == false){
+           model.addAttribute("message1", "正解を設定してください。");
+           return "home";
+       }
+       else{
+           jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (?,?,?,?,?,?);"
+                   ,fm.getTitle(),fm.getText(),fm.getSelect1(),fm.getSelect2(),fm.getSelect3(),fm.getSelect4());
+           jdbcTemplate.update("insert into Checktbl (check1,check2,check3,check4) VALUE (?,?,?,?)"
+                   ,fm.isCheck1(),fm.isCheck2(),fm.isCheck3(),fm.isCheck4());
+           return "home";
+       }
     }
    @RequestMapping(value = "/Alldelete" , method = RequestMethod.GET)
      public String delete (Model model){
