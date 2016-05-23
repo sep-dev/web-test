@@ -1,8 +1,5 @@
 package jp.com.test;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -20,21 +17,52 @@ public class HomeController {
 
 	@RequestMapping(value = "/" ,  method = RequestMethod.GET)
 	public String entry(Model model){
+	    FormModel fm  = new FormModel();
+	    model.addAttribute("FormModel", fm);
+	    model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+
 	    return "home";
 	}
    @RequestMapping(value = "/" ,  method = RequestMethod.POST)
     public String entry_form(@ModelAttribute FormModel fm,Model model){
-       jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (\"aaa\",\"aaa\",\"a\",\"a\",\"a\",\"a\");");
+       
+       
+       jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (?,?,?,?,?,?);"
+               ,fm.getTitle(),fm.getText(),fm.getSelect1(),fm.getSelect2(),fm.getSelect3(),fm.getSelect4());
+       jdbcTemplate.update("insert into Checktbl (check1,check2,check3,check4) VALUE (?,?,?,?)"
+               ,fm.isCheck1(),fm.isCheck2(),fm.isCheck3(),fm.isCheck4());
+       System.out.print(fm.getTitle()+"  ");
+       System.out.print(fm.getText()+"  ");
+       System.out.print(fm.getSelect1()+"  ");
+       System.out.print(fm.getSelect2()+"  ");
+       System.out.print(fm.getSelect3()+"  ");
+       System.out.print(fm.getSelect4()+"\n");
        return "home";
     }
+   @RequestMapping(value = "/Alldelete" , method = RequestMethod.GET)
+     public String delete (Model model){
+       model.addAttribute("message1", "本当に削除してもよろしかったでしょうか？");
+       model.addAttribute("message2", "データを全て消去します。");
+       model.addAttribute("message3", "<input type =submit value =\"実行\">");
+       return "kakunin";
+   }
+   @RequestMapping(value = "/Alldelete" , method = RequestMethod.POST)
+   public String delete (FormModel fm,Model model){
+       jdbcTemplate.update("delete from Entrytbl");
+       jdbcTemplate.update("delete from Checktbl");
+       jdbcTemplate.update("ALTER TABLE Entrytbl AUTO_INCREMENT = 1");
+       jdbcTemplate.update("ALTER TABLE Checktbl AUTO_INCREMENT = 1");
+     return "redirect:/";
+ }
+   /*
 	@RequestMapping(value = "/Q", method = RequestMethod.GET)
 	 public String home( Model model) {
 		FormModel fm = new FormModel();
 
 		model.addAttribute("formModel",fm);
-		List<Map<String,Object>>list = jdbcTemplate.queryForList("select * from entrytbl");
+		List<Map<String,Object>>entrylist = jdbcTemplate.queryForList("select * from entrytbl");
 
-		model.addAttribute("list",list);
+		model.addAttribute("entrylist",entrylist);
 
 		return "question";
 	}
@@ -46,13 +74,13 @@ public class HomeController {
 
 	@RequestMapping(value = "/A", method = RequestMethod.GET)
 	public String end( FormModel fm,Model model){
-		int id = fm.getId();
-		List<Map<String,Object>>list = jdbcTemplate.queryForList("select * from entrytbl");
-		List<Map<String,Object>>ans = jdbcTemplate.queryForList("select * from entrytbl where id="+id);
-		model.addAttribute("list",list);
-		model.addAttribute("ans",ans);
+		List<Map<String,Object>>entrylist = jdbcTemplate.queryForList("select * from entrytbl");
+		List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
+		model.addAttribute("entrylist",entrylist);
+		model.addAttribute("checklist",checklist);
 
 
 		return "answer";
 	}
+	*/
 }

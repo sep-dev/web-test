@@ -32,7 +32,7 @@
 	onclick="location.href='http://localhost:8080/test/'"></div>
 
 	<footer>
-	<a href="http://localhost:8080/test/" >君も問題を作ろう！</a>
+	<a href="http://localhost:8080/test/" >君も問題を作ろう！${delete}</a>
 	</footer>
 	</body>
 	</html>

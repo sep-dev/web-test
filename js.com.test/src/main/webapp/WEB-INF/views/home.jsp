@@ -16,14 +16,14 @@
     <div id = "boxA">
      <div id="box1">
         <p>タイトルを入力してください。</p>
-        <input type = "text" size = 30 id = "text_title">
+        <input type = "text" size = 30 id = "text_title" name = "title">
         <p>問題の本文を入力してください。</p>
-        <TEXTAREA name = "text" wrap = "soft" id = "text_question"></TEXTAREA>
+        <TEXTAREA name = "text" wrap = "soft" id = "text_question" name = "text"></TEXTAREA>
      </div>
      <div id = "box2">
      <c:forEach begin="1" end="4" step="1" varStatus="status">
         <p>選択肢${status.index}</p>
-        <input type = "text" name= "select${status.index}" id = "select"><input type = "checkbox" id = "check">
+        <input type = "text" name= "select${status.index}" id = "select" name ="select${status.index}"><input type = "checkbox" id = "check" name = "check${status.index}">
      </c:forEach>
      </div>
      <div id = "box3">
@@ -32,7 +32,7 @@
      </div>
      <div id= "box4"></div>
 </div>
-<div id = "footer">ふったー</div>
+<div id = "footer">ふったー${delete}</div>
 </form:form>
 </body>
 

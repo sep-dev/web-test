@@ -25,7 +25,7 @@
 	    </div>
 	 </c:forEach><!-- 設問出力ここまで -->
 </div>
-<div id = "footer">ふったー</div>
+<div id = "footer">ふったー${delete}</div>
 </form:form>
 </body>
 
