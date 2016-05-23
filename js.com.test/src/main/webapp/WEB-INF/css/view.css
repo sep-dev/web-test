@@ -17,7 +17,7 @@ div
 
 body
 {
-	transition-duration:0.6s;
+	transition-duration:1.2s;
 }
 
 #boxA
@@ -109,7 +109,7 @@ body
     }
     #footer
     {
-    clear:both;
+    height:10px;
     text-align:center;
     margin-top: auto;
     width:100%;
@@ -117,6 +117,14 @@ body
     border-top:solid 1px;
     bottom:0;
     }
+   /*汎用設定*/
+#error{/*エラー時に表示する文字*/
+    color:#ff0000;
+    margin-left:5px;
+}
+#button{/*submitとbuttonの表示設定*/
+
+}
 @media screen and (max-width: 980px) {
    /* 表示領域が980px以下の場合に適用するスタイル */
    div#header
@@ -130,32 +138,24 @@ body
 	   }
 	       div#box1
 	       {
-	       clear:both;
 	       height : 400px;
 	       margin-left:auto;
 	       margin-right:auto;
 	       margin-top:5px;
            padding :10px 5px 40px 5px;
 	       width:98%;
+	       float:none;
 	       }
 	       div#box2
 	       {
-	       padding:auto;
-	       clear:both;
-	       width:98%
+	       padding :10px 5px 40px 5px;
+	       width:98%;
+	       float:none;
 	       }
-	       dic#box3
+	       div#box3
 	       {
-	       padding:auto;
-	       clear:both;
-	       width:98%
+	       padding :10px 5px 40px 5px;
+	       width:98%;
+	       float:none;
 	       }
-}
-/*汎用設定*/
-error{/*エラー時に表示する文字*/
-    color:#ff0000;
-    margin-left:5px;
-}
-#button{/*submitとbuttonの表示設定*/
-
 }
