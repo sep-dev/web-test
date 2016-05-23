@@ -122,9 +122,6 @@ body
     color:#ff0000;
     margin-left:5px;
 }
-#button{/*submitとbuttonの表示設定*/
-
-}
 @media screen and (max-width: 980px) {
    /* 表示領域が980px以下の場合に適用するスタイル */
    div#header

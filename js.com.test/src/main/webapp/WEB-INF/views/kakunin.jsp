@@ -14,7 +14,7 @@
     <form:form modelAttribute="formModel">
     <div id ="header"><h1>${message2}</h1></div>
     <div id = "boxA">
-        <div id="box1">
+        <div id="questions">
         <p>${message3}</p>
         </div>
      <div id = "box4"></div>
