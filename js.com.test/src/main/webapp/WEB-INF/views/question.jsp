@@ -30,7 +30,7 @@
       <input type = "button" value = "登録画面へ" onClick ="location.href='http://localhost:8080/test/'">
       </div>
 </div>
-<div id = "footer">ふったー${delete}</div>
+<div id = "footer"><a href='http://localhost:8080/test/'>君も問題を作ろう！</a>${delete}</div>
 </form:form>
 </body>
 </html>
