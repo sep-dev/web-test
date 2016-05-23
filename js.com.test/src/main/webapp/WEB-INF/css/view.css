@@ -117,6 +117,14 @@ body
     border-top:solid 1px;
     bottom:0;
     }
+   /*汎用設定*/
+error{/*エラー時に表示する文字*/
+    color:#ff0000;
+    margin-left:5px;
+}
+#button{/*submitとbuttonの表示設定*/
+
+}
 @media screen and (max-width: 980px) {
    /* 表示領域が980px以下の場合に適用するスタイル */
    div#header
@@ -141,21 +149,12 @@ body
 	       div#box2
 	       {
 	       padding:auto;
-	       clear:both;
-	       width:98%
+	       width:98%;
 	       }
-	       dic#box3
+	       div#box3
 	       {
 	       padding:auto;
 	       clear:both;
 	       width:98%
 	       }
-}
-/*汎用設定*/
-error{/*エラー時に表示する文字*/
-    color:#ff0000;
-    margin-left:5px;
-}
-#button{/*submitとbuttonの表示設定*/
-
 }

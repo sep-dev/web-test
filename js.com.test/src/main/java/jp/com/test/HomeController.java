@@ -1,5 +1,8 @@
 package jp.com.test;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +60,6 @@ public class HomeController {
        jdbcTemplate.update("ALTER TABLE Checktbl AUTO_INCREMENT = 1");
      return "redirect:/";
  }
-   /*
 	@RequestMapping(value = "/Q", method = RequestMethod.GET)
 	 public String home( Model model) {
 		FormModel fm = new FormModel();
@@ -85,5 +87,5 @@ public class HomeController {
 
 		return "answer";
 	}
-	*/
+
 }
