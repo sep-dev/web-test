@@ -31,20 +31,20 @@ public class HomeController {
    @RequestMapping(value = "/" ,  method = RequestMethod.POST)
     public String entry_form(@Valid  @ModelAttribute FormModel fm,BindingResult result,Model model){
        model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
-//       if(result.hasErrors()){
-//           return "home";
-//       }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
-//               fm.isCheck4() == false){
-//           model.addAttribute("message1", "正解を設定してください。");
-//           return "home";
-//       }
-//       else{
+       if(result.hasErrors()){
+           return "home";
+       }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
+               fm.isCheck4() == false){
+           model.addAttribute("message1", "正解を設定してください。");
+           return "home";
+       }
+       else{
            jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (?,?,?,?,?,?);"
                    ,fm.getTitle(),fm.getText(),fm.getSelect1(),fm.getSelect2(),fm.getSelect3(),fm.getSelect4());
            jdbcTemplate.update("insert into Checktbl (check1,check2,check3,check4) VALUE (?,?,?,?)"
                    ,fm.isCheck1(),fm.isCheck2(),fm.isCheck3(),fm.isCheck4());
            return "home";
-//       }
+       }
     }
    @RequestMapping(value = "/Alldelete" , method = RequestMethod.GET)
      public String delete (Model model){
@@ -65,16 +65,15 @@ public class HomeController {
 	 public String home( Model model) {
 		FormModel fm = new FormModel();
 		model.addAttribute("formModel",fm);
-		//新しい配列の作成
+		//新しい配列の作成(checkradio)
 		List<String> checkradio= new ArrayList<String>();
 		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from entrytbl");
 		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from checktbl");
 		model.addAttribute("entrylist",entrylist);
 		model.addAttribute("checklist",checklist);
 
-		//entrylistの数を参考に、順番に変数numに数値を代入
+		//entrylistのlist数を参考に、変数numに数値を代入
 		for(int num=0;num<entrylist.size();num++){
-			System.out.print(num);
 			int check1 = (Integer) checklist.get(num).get("check1");
 			int check2 = (Integer) checklist.get(num).get("check2");
 			int check3 = (Integer) checklist.get(num).get("check3");
@@ -87,13 +86,11 @@ public class HomeController {
 		if(check3==1){set+=1;}
 		if(check4==1){set+=1;}
 
-		//正解が1つのとき
+		//正解が1つのとき、配列に"radio"を入れる
 		if(set==1){
 		    checkradio.add("radio");
 
-		}else if(set == 0){
-            checkradio.add("null");
-       //正解が複数のとき
+		//正解が複数のとき、配列に"checkbox"を入れる
 		}else{
 		    checkradio.add("checkbox");
 			}
