@@ -96,6 +96,8 @@ public class HomeController {
 			}
 		}
 		model.addAttribute("button", checkradio);
+		model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" "
+				+ "onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
 		return "question";
 	}
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)

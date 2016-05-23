@@ -26,7 +26,8 @@
             </div>
       </c:forEach>
 </div>
-<div id = "footer">ふったー${delete}</div>
+<div id = "footer">${delete}<br>
+      <a href = "http://localhost:8080/test/">君も問題を作ろう</a></div>
 </form:form>
 </body>
 </html>
