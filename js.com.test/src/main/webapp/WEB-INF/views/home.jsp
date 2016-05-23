@@ -11,13 +11,13 @@
 </head>
 <body>
     <form:form modelAttribute="formModel">
-    <div id ="header"><h1>webテスト<br>問題集<br>${message1}</h1></div>
+    <div id ="header"><h1>webテスト<br>問題集</h1></div>
     <div id = "boxA">
      <div id="box1">
         <p>タイトルを入力してください。<form:errors path="title" id = "error"/></p>
         <input type = "text" size = 30 id = "text_title" name = "title">
         <p>問題の本文を入力してください。<form:errors path="text" id = "error"/></p>
-        <TEXTAREA name = "text" wrap = "soft" id = "text_question" name = "text"></TEXTAREA>
+        <TEXTAREA name = "text" id = "text_question" name = "text" style="resize:none;"></TEXTAREA>
      </div>
      <div id = "box2">
      <c:forEach begin="1" end="4" step="1" varStatus="status">

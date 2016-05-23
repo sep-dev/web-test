@@ -35,7 +35,11 @@ public class HomeController {
            return "home";
        }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
                fm.isCheck4() == false){
-           model.addAttribute("message1", "正解を設定してください。");
+           model.addAttribute("message1", "真実はいつもひとつ。");
+           return "home";
+       }else if (fm.isCheck1() == true & fm.isCheck2()== true & fm.isCheck3() == true &
+               fm.isCheck4() == true){
+           model.addAttribute("message1", "真実は１つから３つまで。");
            return "home";
        }
        else{
@@ -86,11 +90,10 @@ public class HomeController {
     		if(set==1){
     		    checkradio.add("radio");
     		//正解が複数のとき
-    		}
-    		else{
+    		}else{
     		    checkradio.add("checkbox");
-    			}
     		}
+    	}
 		model.addAttribute("button", checkradio);
 		model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
 		return "question";

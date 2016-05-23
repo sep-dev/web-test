@@ -19,7 +19,7 @@
             <p>${entry.title}</p><!-- 設問本文 -->
             <c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
                  <label><input type = "${button}" name = "ans${status.index}" value = "" >${entry.select1}</label><br>
-                 <label><input type = "${button}" name = "asn${status.index}" value = ""> ${entry.select2}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select2}</label><br>
                  <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select3}</label><br>
                  <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select4}</label><br>
             </c:forEach>
