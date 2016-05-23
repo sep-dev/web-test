@@ -84,13 +84,10 @@ public class HomeController {
 		if(check3==1){set+=1;}
 		if(check4==1){set+=1;}
 		//正解が1つのとき
-
 		if(set==1){
 		    checkradio.add("radio");
 		//正解が複数のとき
-		}else if(set == 0){
-            checkradio.add("null");
-        }
+		}
 		else{
 		    checkradio.add("checkbox");
 			}
