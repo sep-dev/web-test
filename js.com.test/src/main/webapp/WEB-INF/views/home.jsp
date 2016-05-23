@@ -32,7 +32,7 @@
      </div>
      <div id= "box4"></div>
 </div>
-<div id = "footer">ふったー</div>
+<div id = "footer">君の問題を作ろう</div>
 </form:form>
 </body>
 
