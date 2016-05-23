@@ -81,6 +81,7 @@ public class HomeController {
 
 		//if文でそれぞれの成否確認
 			int set = 0;
+<<<<<<< HEAD
 		if(check1==1){set+=1;}
 		if(check2==1){set+=1;}
 		if(check3==1){set+=1;}
@@ -98,6 +99,23 @@ public class HomeController {
 		model.addAttribute("button", checkradio);
 		model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" "
 				+ "onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+=======
+    		if(check1==1){set+=1;}
+    		if(check2==1){set+=1;}
+    		if(check3==1){set+=1;}
+    		if(check4==1){set+=1;}
+    		//正解が1つのとき
+    		if(set==1){
+    		    checkradio.add("radio");
+    		//正解が複数のとき
+    		}
+    		else{
+    		    checkradio.add("checkbox");
+    			}
+    		}
+		model.addAttribute("button", checkradio);
+		model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+>>>>>>> 429d00ce11331ba82d41a31182e37b63e857341a
 		return "question";
 	}
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)

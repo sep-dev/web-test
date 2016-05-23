@@ -14,12 +14,12 @@
     <form:form modelAttribute="formModel">
     <div id ="header"><h1>${message2}</h1></div>
     <div id = "boxA">
-        <div id="box1">
+        <div id="questions">
         <p>${message3}</p>
         </div>
      <div id = "box4"></div>
     </div>
-<div id = "footer">ふったー${delete}</div>
+<div id = "footer"><a href='http://localhost:8080/test/'>君も問題を作ろう！</a>${delete}</div>
 </form:form>
 </body>
 
