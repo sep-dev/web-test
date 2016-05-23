@@ -14,18 +14,18 @@
     <div id ="header"><h1>webテスト<br>問題集<br>${message1}</h1></div>
     <div id = "boxA">
      <div id="box1">
-        <p>タイトルを入力してください。<form:errors path="title" style ="color:red"/></p>
+        <p>タイトルを入力してください。<form:errors path="title" id = "error"/></p>
         <input type = "text" size = 30 id = "text_title" name = "title">
-        <p>問題の本文を入力してください。<form:errors path="text" style ="color:red"/></p>
+        <p>問題の本文を入力してください。<form:errors path="text" id = "error"/></p>
         <TEXTAREA name = "text" wrap = "soft" id = "text_question" name = "text"></TEXTAREA>
      </div>
      <div id = "box2">
      <c:forEach begin="1" end="4" step="1" varStatus="status">
-        <p>選択肢${status.index}</p>
+        <p>選択肢${status.index}<form:errors path="select${status.index}" id="error" /></p>
         <input type = "text" name= "select${status.index}" id = "select" name ="select${status.index}"><input type = "checkbox" id = "check" name = "check${status.index}">
-     <br><form:errors path="select${status.index}" element="error" />
+     <br>
      </c:forEach>
-     <p style = >${message1}</p>
+     <p  id= "error">${message1}</p>
      </div>
      <div id = "box3">
      <input type = "submit" value = "送信" id = "button"><br>

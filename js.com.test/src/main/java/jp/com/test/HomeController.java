@@ -1,5 +1,6 @@
 package jp.com.test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,20 +31,20 @@ public class HomeController {
    @RequestMapping(value = "/" ,  method = RequestMethod.POST)
     public String entry_form(@Valid  @ModelAttribute FormModel fm,BindingResult result,Model model){
        model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
-       if(result.hasErrors()){
-           return "home";
-       }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
-               fm.isCheck4() == false){
-           model.addAttribute("message1", "正解を設定してください。");
-           return "home";
-       }
-       else{
+//       if(result.hasErrors()){
+//           return "home";
+//       }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
+//               fm.isCheck4() == false){
+//           model.addAttribute("message1", "正解を設定してください。");
+//           return "home";
+//       }
+//       else{
            jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (?,?,?,?,?,?);"
                    ,fm.getTitle(),fm.getText(),fm.getSelect1(),fm.getSelect2(),fm.getSelect3(),fm.getSelect4());
            jdbcTemplate.update("insert into Checktbl (check1,check2,check3,check4) VALUE (?,?,?,?)"
                    ,fm.isCheck1(),fm.isCheck2(),fm.isCheck3(),fm.isCheck4());
            return "home";
-       }
+//       }
     }
    @RequestMapping(value = "/Alldelete" , method = RequestMethod.GET)
      public String delete (Model model){
@@ -64,9 +65,11 @@ public class HomeController {
 	 public String home( Model model) {
 		FormModel fm = new FormModel();
 		model.addAttribute("formModel",fm);
+		List<String> checkradio= new ArrayList<String>();
 		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from entrytbl");
 		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from checktbl");
-		model.addAttribute("list",entrylist);
+		model.addAttribute("entrylist",entrylist);
+		model.addAttribute("checklist",checklist);
 		//entrylistの数を参考に、順番に変数numに数値を代入
 		for(int num=0;num<entrylist.size();num++){
 			System.out.print(num);
@@ -77,21 +80,22 @@ public class HomeController {
 		//if文でそれぞれの成否確認
 			int set = 0;
 		if(check1==1){set+=1;}
-
 		if(check2==1){set+=1;}
-
 		if(check3==1){set+=1;}
-
 		if(check4==1){set+=1;}
-
 		//正解が1つのとき
+
 		if(set==1){
-			model.addAttribute("button","radio");
+		    checkradio.add("radio");
 		//正解が複数のとき
-		}else{
-			model.addAttribute("button","checkbox");
+		}else if(set == 0){
+            checkradio.add("null");
+        }
+		else{
+		    checkradio.add("checkbox");
 			}
 		}
+		model.addAttribute("button", checkradio);
 		return "question";
 	}
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)
