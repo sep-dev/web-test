@@ -21,24 +21,31 @@ public class HomeController {
 	//データベース接続
 	@Autowired
 	   private JdbcTemplate jdbcTemplate;
+	//問題登録画面
 	@RequestMapping(value = "/" ,  method = RequestMethod.GET)
 	public String entry(Model model){
 	    FormModel fm  = new FormModel();
 	    model.addAttribute("FormModel", fm);
-	    model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+	    model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" "
+	    		+ "onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
 	    return "home";
 	}
    @RequestMapping(value = "/" ,  method = RequestMethod.POST)
     public String entry_form(@Valid  @ModelAttribute FormModel fm,BindingResult result,Model model){
-       model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+       model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\""
+       		+ " onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
        if(result.hasErrors()){
            return "home";
        }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
                fm.isCheck4() == false){
            model.addAttribute("message1", "正解を設定してください。");
            return "home";
-       }
-       else{
+
+       }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
+               fm.isCheck4() == false){
+           model.addAttribute("message1", "正解を設定してください。");
+           return "home";
+       }else{
            jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (?,?,?,?,?,?);"
                    ,fm.getTitle(),fm.getText(),fm.getSelect1(),fm.getSelect2(),fm.getSelect3(),fm.getSelect4());
            jdbcTemplate.update("insert into Checktbl (check1,check2,check3,check4) VALUE (?,?,?,?)"
@@ -46,6 +53,7 @@ public class HomeController {
            return "home";
        }
     }
+   //削除機能
    @RequestMapping(value = "/Alldelete" , method = RequestMethod.GET)
      public String delete (Model model){
        model.addAttribute("message1", "本当に削除してもよろしかったでしょうか？");
@@ -61,6 +69,7 @@ public class HomeController {
        jdbcTemplate.update("ALTER TABLE Checktbl AUTO_INCREMENT = 1");
      return "redirect:/";
  }
+   //問題出題画面
 	@RequestMapping(value = "/Q", method = RequestMethod.GET)
 	 public String home( Model model) {
 		FormModel fm = new FormModel();
@@ -79,9 +88,8 @@ public class HomeController {
 			int check3 = (Integer) checklist.get(num).get("check3");
 			int check4 = (Integer) checklist.get(num).get("check4");
 
-		//if文でそれぞれの成否確認
+		//if文でそれぞれの成否確認（1が正解、2が不正解）
 			int set = 0;
-<<<<<<< HEAD
 		if(check1==1){set+=1;}
 		if(check2==1){set+=1;}
 		if(check3==1){set+=1;}
@@ -99,23 +107,6 @@ public class HomeController {
 		model.addAttribute("button", checkradio);
 		model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" "
 				+ "onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
-=======
-    		if(check1==1){set+=1;}
-    		if(check2==1){set+=1;}
-    		if(check3==1){set+=1;}
-    		if(check4==1){set+=1;}
-    		//正解が1つのとき
-    		if(set==1){
-    		    checkradio.add("radio");
-    		//正解が複数のとき
-    		}
-    		else{
-    		    checkradio.add("checkbox");
-    			}
-    		}
-		model.addAttribute("button", checkradio);
-		model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
->>>>>>> 429d00ce11331ba82d41a31182e37b63e857341a
 		return "question";
 	}
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)
