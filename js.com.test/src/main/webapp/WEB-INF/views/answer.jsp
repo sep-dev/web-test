@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 	<% request.setCharacterEncoding("UTF-8");  %>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<html>
 	<head>
 	<style type="text/css"><%@include file="../css/view.css" %></style>
@@ -14,20 +14,19 @@
 	<h1>webテスト</h1>
 	<h2>解答</h2>
     </div>
-
-	<p id="question">問題1</p>
-
-	<p>ここに問題文を記入<br>
-       解答1			 <br>
-	   問題1の答え       <br></p>
-
-	<p id="question">問題2</p>
-
-	<p>ここに問題文を記入<br>
-	   解答2 				 <br>
-	   解答3     			 <br>
-	   問題2の答え           <br></p>
-
+      <c:forEach items = "${entrylist}" var = "entry" varStatus = "status">
+        <div id="question"><!-- 出題テンプレート -->
+            <div id="q_title"><h1>第${status.index+1}問</h1></div>
+            <p>${entry.title}</p><!-- 設問本文 -->
+            <c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
+            <
+                 <label><input name = "ans${status.index}" value = ""> ${entry.select1}</label><br>
+                 <label><input name = "ans${status.index}" value = ""> ${entry.select2}</label><br>
+                 <label><input name = "ans${status.index}" value = ""> ${entry.select3}</label><br>
+                 <label><input name = "ans${status.index}" value = ""> ${entry.select4}</label><br>
+            </c:forEach>
+            </div>
+      </c:forEach>
 	<div id=post><input id=sub type=button value="戻る"
 	onclick="location.href='http://localhost:8080/test/'"></div>
 

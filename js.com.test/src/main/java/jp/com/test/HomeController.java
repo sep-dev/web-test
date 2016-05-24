@@ -103,12 +103,16 @@ public class HomeController {
 	return "question";
 	 }
 	@RequestMapping(value = "/A", method = RequestMethod.GET)
-	public String end( FormModel fm,Model model){
+	public String answer( FormModel fm,Model model){
 		List<Map<String,Object>>entrylist = jdbcTemplate.queryForList("select * from entrytbl");
 		List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
 		model.addAttribute("entrylist",entrylist);
 		model.addAttribute("checklist",checklist);
 		return "answer";
 	}
+   @RequestMapping(value = "/A", method = RequestMethod.POST)
+    public String answer_form(FormModel fm, Model model) {
+    return "question";
+     }
 
 }
