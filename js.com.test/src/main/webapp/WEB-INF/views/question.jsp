@@ -18,19 +18,20 @@
             <div id="q_title"><h1>第${status.index+1}問</h1></div>
             <p>${entry.title}</p><!-- 設問本文 -->
             <c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
-                 <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select1}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select2}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select3}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select4}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}" value = "check1"> ${entry.select1}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}" value = "check2"> ${entry.select2}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}" value = "check3"> ${entry.select3}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}" value = "check4"> ${entry.select4}</label><br>
             </c:forEach>
             </div>
       </c:forEach>
       <div id = "questions">
-      <input type = "submit" value = "答え合わせ">
-      <input type = "button" value = "登録画面へ" onClick ="location.href='http://localhost:8080/test/'">
+      <input type = "submit" value = "答え合わせ" id = "button">
+      <input type = "button" value = "登録画面へ" onClick ="location.href='http://localhost:8080/test/'" id = "button">
       </div>
 </div>
-<div id = "footer"><a href='http://localhost:8080/test/'>君も問題を作ろう！</a>${delete}</div>
+<div id = "footer"><a href='http://localhost:8080/test/'>君も問題を作ろう！</a></div>
+${delete}
 </form:form>
 </body>
 </html>

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +68,7 @@ public class HomeController {
      return "redirect:/";
  }
 	@RequestMapping(value = "/Q", method = RequestMethod.GET)
-	 public String home( Model model) {
+	 public String home( Model model , HttpServletRequest request,HttpServletResponse response) throws Exception  {
 		FormModel fm = new FormModel();
 		model.addAttribute("formModel",fm);
 		List<String> checkradio= new ArrayList<String>();
@@ -96,16 +98,24 @@ public class HomeController {
     	}
 		model.addAttribute("button", checkradio);
 		model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+		response.getWriter();
 		return "question";
 	}
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)
-	public String home(FormModel fm, Model model) {
-	return "question";
+	public String home(FormModel fm, Model model, HttpServletRequest request,HttpServletResponse response) throws Exception {
+	    int i = 0;
+	    for(i=0;i<5;i++){
+	        String s = request.getParameter("ans"+i);
+
+	    System.out.print(s+"\n");
+	    }
+	return "redirect:/A";
 	 }
 	@RequestMapping(value = "/A", method = RequestMethod.GET)
 	public String answer( FormModel fm,Model model){
 		List<Map<String,Object>>entrylist = jdbcTemplate.queryForList("select * from entrytbl");
 		List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
+
 		model.addAttribute("entrylist",entrylist);
 		model.addAttribute("checklist",checklist);
 		return "answer";
