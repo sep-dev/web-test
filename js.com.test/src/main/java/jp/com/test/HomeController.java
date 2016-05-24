@@ -41,9 +41,9 @@ public class HomeController {
            model.addAttribute("message1", "正解を設定してください。");
            return "home";
 
-       }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
-               fm.isCheck4() == false){
-           model.addAttribute("message1", "正解を設定してください。");
+       }else if (fm.isCheck1() == true & fm.isCheck2()== true & fm.isCheck3() == true &
+               fm.isCheck4() == true){
+           model.addAttribute("message1", "正解は1つ～3つに設定してください。");
            return "home";
        }else{
            jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (?,?,?,?,?,?);"
@@ -113,13 +113,4 @@ public class HomeController {
 	public String home(FormModel fm, Model model) {
 	return "question";
 	 }
-	@RequestMapping(value = "/A", method = RequestMethod.GET)
-	public String end( FormModel fm,Model model){
-		List<Map<String,Object>>entrylist = jdbcTemplate.queryForList("select * from entrytbl");
-		List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
-		model.addAttribute("entrylist",entrylist);
-		model.addAttribute("checklist",checklist);
-		return "answer";
-	}
-
 }
