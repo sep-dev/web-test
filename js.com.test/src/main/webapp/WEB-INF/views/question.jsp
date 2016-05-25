@@ -18,10 +18,18 @@
             <div id="q_title"><h1>第${status.index+1}問</h1></div>
             <p>${entry.title}</p><!-- 設問本文 -->
             <c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
-                 <label><input type = "${button}" name = "ans${status.index}" value = "check1"> ${entry.select1}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = "check2"> ${entry.select2}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = "check3"> ${entry.select3}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = "check4"> ${entry.select4}</label><br>
+            <c:if test = "${button=='checkbox'}">
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-2" value = "check2"> ${entry.select2}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-3" value = "check3"> ${entry.select3}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-4" value = "check4"> ${entry.select4}</label><br>
+            </c:if>
+            <c:if test = "${button=='radio'}">
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check2"> ${entry.select2}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check3"> ${entry.select3}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check4"> ${entry.select4}</label><br>
+            </c:if>
             </c:forEach>
             </div>
       </c:forEach>

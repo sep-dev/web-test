@@ -27,7 +27,7 @@
             </div>
       </c:forEach>
 	<div id=post><input id=sub type=button value="戻る"
-	onclick="location.href='http://localhost:8080/test/'"></div>
+	onclick="location.href='http://localhost:8080/test/Q'"></div>
 
 	<footer>
 	<div id = "footer"><a href = 'http://localhost:8080/test/'>君の問題を作ろう</a>${delete}</div>

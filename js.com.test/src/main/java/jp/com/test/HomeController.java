@@ -69,7 +69,8 @@ public class HomeController {
  }
 	@RequestMapping(value = "/Q", method = RequestMethod.GET)
 	 public String home( Model model , HttpServletRequest request,HttpServletResponse response) throws Exception  {
-		FormModel fm = new FormModel();
+
+	    FormModel fm = new FormModel();
 		model.addAttribute("formModel",fm);
 		List<String> checkradio= new ArrayList<String>();
 		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from entrytbl");
@@ -102,22 +103,81 @@ public class HomeController {
 		return "question";
 	}
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)
-	public String home(FormModel fm, Model model, HttpServletRequest request,HttpServletResponse response) throws Exception {
-	    int i = 0;
-	    for(i=0;i<5;i++){
-	        String s = request.getParameter("ans"+i);
+	public String home(FormModel fm, Model model, HttpServletRequest request,HttpServletResponse response)
+	        throws Exception {
+	    List<Integer> ans1 = new ArrayList<Integer>();
+	    List<Integer> ans2 = new ArrayList<Integer>();
+	    List<Integer> ans3 = new ArrayList<Integer>();
+	    List<Integer> ans4 = new ArrayList<Integer>();
+	    List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
+	    for(Integer i=0;i<checklist.size();i++){
+	        String s1 = request.getParameter("ans"+i+"-1");
+	        String s2 = request.getParameter("ans"+i+"-2");
+	        String s3 = request.getParameter("ans"+i+"-3");
+	        String s4 = request.getParameter("ans"+i+"-4");
+                //ラジオボタンの場合
+             if(s1!=null&&s2==null&&s3==null&&s4==null){
+                 if("check1".equals(s1)){
+                     ans1.add(1);
+                     ans2.add(0);
+                     ans3.add(0);
+                     ans4.add(0);
+                 }else if("check2".equals(s1)){
+                     ans1.add(0);
+                     ans2.add(1);
+                     ans3.add(0);
+                     ans4.add(0);
+                 }else if("check3".equals(s1)){
+                     ans1.add(0);
+                     ans2.add(0);
+                     ans3.add(1);
+                     ans4.add(0);
+                 }else if("check4".equals(s1)){
+                     ans1.add(0);
+                     ans2.add(0);
+                     ans3.add(0);
+                     ans4.add(1);
+                 }
+             }else{
+                 if("check1".equals(s1)){
+                     ans1.add(1);
+                 }else{
+                     ans1.add(0);
+                 }
+                 if("check2".equals(s2)){
+                     ans2.add(1);
+                 }else{
+                     ans2.add(0);
+                 }
+                 if("check3".equals(s3)){
+                     ans3.add(1);
+                 }else{
+                     ans3.add(0);
+                 }
+                 if("check4".equals(s4)){
+                     ans4.add(1);
+                 }else{
+                     ans4.add(0);
+                 }
+             }
 
-	    System.out.print(s+"\n");
+            System.out.print("\n"+s1+"    "+ans1.get(i)+"\n");
+            System.out.print(s2+"    "+ans2.get(i)+"\n");
+            System.out.print(s3+"    "+ans3.get(i)+"\n");
+            System.out.print(s4+"    "+ans4.get(i)+"\n");
 	    }
+
 	return "redirect:/A";
 	 }
 	@RequestMapping(value = "/A", method = RequestMethod.GET)
-	public String answer( FormModel fm,Model model){
+	public String answer( FormModel fm,Model model, HttpServletRequest request,HttpServletResponse response)
+            throws Exception {
 		List<Map<String,Object>>entrylist = jdbcTemplate.queryForList("select * from entrytbl");
 		List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
 
 		model.addAttribute("entrylist",entrylist);
 		model.addAttribute("checklist",checklist);
+
 		return "answer";
 	}
    @RequestMapping(value = "/A", method = RequestMethod.POST)
