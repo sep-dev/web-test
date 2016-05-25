@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,10 +78,9 @@ public class HomeController {
 		model.addAttribute("formModel",fm);
 		//新しい配列の作成(checkradio)
 		List<String> checkradio= new ArrayList<String>();
-		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from entrytbl");
-		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from checktbl");
+		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from Entrytbl");
+		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from Checktbl");
 		model.addAttribute("entrylist",entrylist);
-		model.addAttribute("checklist",checklist);
 
 		//entrylistのlist数を参考に、変数numに数値を代入
 		for(int num=0;num<entrylist.size();num++){
@@ -109,8 +110,39 @@ public class HomeController {
 				+ "onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
 		return "question";
 	}
+
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)
-	public String home(FormModel fm, Model model) {
-	return "question";
+	public String home(FormModel fm, Model model, HttpServletRequest request,
+						HttpServletResponse response)throws Exception{
+		List<String> selectlist= new ArrayList<String>();
+		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from Entrytbl");
+		model.addAttribute("entrylist",entrylist);
+
+		for(int i=0;i<entrylist.size();i++){
+			String ans = request.getParameter("ans"+i);
+			if(ans==null){
+				selectlist.add("選ばれておりません");
+			}else{
+				selectlist.add(ans);
+			}
+		}
+		model.addAttribute("list",selectlist);
+		List<String> answerlist= new ArrayList<String>();
+		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from Checktbl");
+		model.addAttribute("checklist",checklist);
+
+		for(int i=0;i<checklist.size();i++){
+
+
+
+		}
+
+
+
+
+
+
+
+		return "question";
 	 }
 }

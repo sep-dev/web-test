@@ -11,7 +11,7 @@
 </head>
 <body>
     <form:form modelAttribute="formModel">
-    <div id ="header"><h1>webテスト<br>問題集<br>${message1}</h1></div>
+    <div id ="header"><h1>webテスト<br>問題集<br></h1></div>
     <div id = "boxA">
      <div id="box1">
         <p>タイトルを入力してください。<form:errors path="title" id = "error"/></p>

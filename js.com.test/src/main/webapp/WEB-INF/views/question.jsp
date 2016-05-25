@@ -18,12 +18,15 @@
             <div id="q_title"><h1>第${status.index+1}問</h1></div>
             <p>${entry.title}</p><p>${entry.text}</p><!-- 設問本文 -->
             <c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
-                 <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select1}</label><br>
-                 <label><input type = "${button}" name = "asn${status.index}" value = ""> ${entry.select2}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select3}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = ""> ${entry.select4}</label><br>
-            </c:forEach>
-            </div>
+                 <label><input type = "${button}" name = "ans${status.index}" value = "${entry.select1}"> ${entry.select1}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}" value = "${entry.select2}"> ${entry.select2}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}" value = "${entry.select3}"> ${entry.select3}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}" value = "${entry.select4}"> ${entry.select4}</label><br>
+         	</c:forEach>
+            <c:forEach items="${list}" var="list" begin = "${status.index}" end="${status.index}">
+               あなたの答え：${list}
+           	</c:forEach>
+          </div>
       </c:forEach>
       <div id = "questions">
       <input type = "submit" value = "答え合わせ">
