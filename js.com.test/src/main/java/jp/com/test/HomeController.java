@@ -127,15 +127,40 @@ public class HomeController {
 			}
 		}
 		model.addAttribute("list",selectlist);
-		List<String> answerlist= new ArrayList<String>();
+		List<String> singlelist= new ArrayList<String>();
+		List<String> morelist= new ArrayList<String>();
+
 		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from Checktbl");
 		model.addAttribute("checklist",checklist);
 
 		for(int i=0;i<checklist.size();i++){
+			int check1 = (Integer) checklist.get(i).get("check1");
+			int check2 = (Integer) checklist.get(i).get("check2");
+			int check3 = (Integer) checklist.get(i).get("check3");
+			int check4 = (Integer) checklist.get(i).get("check4");
 
+			String select1 = (String) entrylist.get(i).get("select1");
+			String select2 = (String) entrylist.get(i).get("select2");
+			String select3 = (String) entrylist.get(i).get("select3");
+			String select4 = (String) entrylist.get(i).get("select4");
 
+			int d = 0;
+		if((check1==1)&&(d==0)){
+			singlelist.add(select1);
+			d+=1;
+			}
+		if(check2==1){
+			d+=1; }
+
+		if(check3==1){ d+=1; }
+
+		if(check4==1){ d+=1; }
+
+		if(d>=2){
 
 		}
+		}
+		System.out.print(singlelist);
 
 
 
