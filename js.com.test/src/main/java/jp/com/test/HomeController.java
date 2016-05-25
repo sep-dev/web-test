@@ -23,31 +23,28 @@ public class HomeController {
 	//データベース接続
 	@Autowired
 	   private JdbcTemplate jdbcTemplate;
-	//問題登録画面
 	@RequestMapping(value = "/" ,  method = RequestMethod.GET)
 	public String entry(Model model){
 	    FormModel fm  = new FormModel();
 	    model.addAttribute("FormModel", fm);
-	    model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" "
-	    		+ "onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+	    model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
 	    return "home";
 	}
    @RequestMapping(value = "/" ,  method = RequestMethod.POST)
     public String entry_form(@Valid  @ModelAttribute FormModel fm,BindingResult result,Model model){
-       model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\""
-       		+ " onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+       model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
        if(result.hasErrors()){
            return "home";
        }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
                fm.isCheck4() == false){
-           model.addAttribute("message1", "正解を設定してください。");
+           model.addAttribute("message1", "真実はいつもひとつ。");
            return "home";
-
        }else if (fm.isCheck1() == true & fm.isCheck2()== true & fm.isCheck3() == true &
                fm.isCheck4() == true){
-           model.addAttribute("message1", "正解は1つ～3つに設定してください。");
+           model.addAttribute("message1", "真実は１つから３つまで。");
            return "home";
-       }else{
+       }
+       else{
            jdbcTemplate.update("insert into Entrytbl (title,text,select1,select2,select3,select4) VALUE (?,?,?,?,?,?);"
                    ,fm.getTitle(),fm.getText(),fm.getSelect1(),fm.getSelect2(),fm.getSelect3(),fm.getSelect4());
            jdbcTemplate.update("insert into Checktbl (check1,check2,check3,check4) VALUE (?,?,?,?)"
@@ -55,7 +52,6 @@ public class HomeController {
            return "home";
        }
     }
-   //削除機能
    @RequestMapping(value = "/Alldelete" , method = RequestMethod.GET)
      public String delete (Model model){
        model.addAttribute("message1", "本当に削除してもよろしかったでしょうか？");
@@ -71,103 +67,122 @@ public class HomeController {
        jdbcTemplate.update("ALTER TABLE Checktbl AUTO_INCREMENT = 1");
      return "redirect:/";
  }
-   //問題出題画面
 	@RequestMapping(value = "/Q", method = RequestMethod.GET)
-	 public String home( Model model) {
-		FormModel fm = new FormModel();
-		model.addAttribute("formModel",fm);
-		//新しい配列の作成(checkradio)
-		List<String> checkradio= new ArrayList<String>();
-		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from Entrytbl");
-		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from Checktbl");
-		model.addAttribute("entrylist",entrylist);
+	 public String home( Model model , HttpServletRequest request,HttpServletResponse response) throws Exception  {
 
-		//entrylistのlist数を参考に、変数numに数値を代入
+	    FormModel fm = new FormModel();
+		model.addAttribute("formModel",fm);
+		List<String> checkradio= new ArrayList<String>();
+		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from entrytbl");
+		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from checktbl");
+		model.addAttribute("entrylist",entrylist);
+		model.addAttribute("checklist",checklist);
+		//entrylistの数を参考に、順番に変数numに数値を代入
 		for(int num=0;num<entrylist.size();num++){
 			int check1 = (Integer) checklist.get(num).get("check1");
 			int check2 = (Integer) checklist.get(num).get("check2");
 			int check3 = (Integer) checklist.get(num).get("check3");
 			int check4 = (Integer) checklist.get(num).get("check4");
-
-		//if文でそれぞれの成否確認（1が正解、2が不正解）
+		//if文でそれぞれの成否確認
 			int set = 0;
-		if(check1==1){set+=1;}
-		if(check2==1){set+=1;}
-		if(check3==1){set+=1;}
-		if(check4==1){set+=1;}
-
-		//正解が1つのとき、配列に"radio"を入れる
-		if(set==1){
-		    checkradio.add("radio");
-
-		//正解が複数のとき、配列に"checkbox"を入れる
-		}else{
-		    checkradio.add("checkbox");
-			}
-		}
+    		if(check1==1){set+=1;}
+    		if(check2==1){set+=1;}
+    		if(check3==1){set+=1;}
+    		if(check4==1){set+=1;}
+    		//正解が1つのとき
+    		if(set==1){
+    		    checkradio.add("radio");
+    		//正解が複数のとき
+    		}else{
+    		    checkradio.add("checkbox");
+    		}
+    	}
 		model.addAttribute("button", checkradio);
-		model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" "
-				+ "onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+		model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
+		response.getWriter();
 		return "question";
 	}
-
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)
-	public String home(FormModel fm, Model model, HttpServletRequest request,
-						HttpServletResponse response)throws Exception{
-		List<String> selectlist= new ArrayList<String>();
-		List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from Entrytbl");
-		model.addAttribute("entrylist",entrylist);
+	public String home(FormModel fm, Model model, HttpServletRequest request,HttpServletResponse response)
+	        throws Exception {
+	    List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from entrytbl");
+	    List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
+        model.addAttribute("entrylist",entrylist);
+        model.addAttribute("checklist",checklist);
+	    List<Integer> ans1 = new ArrayList<Integer>();
+	    List<Integer> ans2 = new ArrayList<Integer>();
+	    List<Integer> ans3 = new ArrayList<Integer>();
+	    List<Integer> ans4 = new ArrayList<Integer>();
 
-		for(int i=0;i<entrylist.size();i++){
-			String ans = request.getParameter("ans"+i);
-			if(ans==null){
-				selectlist.add("選ばれておりません");
-			}else{
-				selectlist.add(ans);
-			}
-		}
-		model.addAttribute("list",selectlist);
-		List<String> singlelist= new ArrayList<String>();
-		List<String> morelist= new ArrayList<String>();
+	    for(Integer i=0;i<checklist.size();i++){
+	        String s1 = request.getParameter("ans"+i+"-1");
+	        String s2 = request.getParameter("ans"+i+"-2");
+	        String s3 = request.getParameter("ans"+i+"-3");
+	        String s4 = request.getParameter("ans"+i+"-4");
+             if(s1!=null&&s2==null&&s3==null&&s4==null){ //ラジオボタンの判定
+                 if("check1".equals(s1)){
+                     ans1.add(1);
+                     ans2.add(0);
+                     ans3.add(0);
+                     ans4.add(0);
+                 }else if("check2".equals(s1)){
+                     ans1.add(0);
+                     ans2.add(1);
+                     ans3.add(0);
+                     ans4.add(0);
+                 }else if("check3".equals(s1)){
+                     ans1.add(0);
+                     ans2.add(0);
+                     ans3.add(1);
+                     ans4.add(0);
+                 }else if("check4".equals(s1)){
+                     ans1.add(0);
+                     ans2.add(0);
+                     ans3.add(0);
+                     ans4.add(1);
+                 }
+             }else{
+                 if("check1".equals(s1)){
+                     ans1.add(1);
+                 }else{
+                     ans1.add(0);
+                 }
+                 if("check2".equals(s2)){
+                     ans2.add(1);
+                 }else{
+                     ans2.add(0);
+                 }
+                 if("check3".equals(s3)){
+                     ans3.add(1);
+                 }else{
+                     ans3.add(0);
+                 }
+                 if("check4".equals(s4)){
+                     ans4.add(1);
+                 }else{
+                     ans4.add(0);
+                 }
+             }
 
-		List<Map<String,Object>> checklist = jdbcTemplate.queryForList("select * from Checktbl");
-		model.addAttribute("checklist",checklist);
+            model.addAttribute("ans1", ans1);
+            model.addAttribute("ans2", ans2);
+            model.addAttribute("ans3", ans3);
+            model.addAttribute("ans4", ans4);
+	    }
 
-		for(int i=0;i<checklist.size();i++){
-			int check1 = (Integer) checklist.get(i).get("check1");
-			int check2 = (Integer) checklist.get(i).get("check2");
-			int check3 = (Integer) checklist.get(i).get("check3");
-			int check4 = (Integer) checklist.get(i).get("check4");
-
-			String select1 = (String) entrylist.get(i).get("select1");
-			String select2 = (String) entrylist.get(i).get("select2");
-			String select3 = (String) entrylist.get(i).get("select3");
-			String select4 = (String) entrylist.get(i).get("select4");
-
-			int d = 0;
-		if((check1==1)&&(d==0)){
-			singlelist.add(select1);
-			d+=1;
-			}
-		if(check2==1){
-			d+=1; }
-
-		if(check3==1){ d+=1; }
-
-		if(check4==1){ d+=1; }
-
-		if(d>=2){
-
-		}
-		}
-		System.out.print(singlelist);
-
-
-
-
-
-
-
-		return "question";
+	return "answer";
 	 }
+	@RequestMapping(value = "/A", method = RequestMethod.GET)
+	public String answer( FormModel fm,Model model, HttpServletRequest request,HttpServletResponse response)
+            throws Exception {
+
+
+        return "answer";
+	}
+
+   @RequestMapping(value = "/A", method = RequestMethod.POST)
+    public String answer_form(FormModel fm, Model model) {
+    return "question";
+     }
+
 }

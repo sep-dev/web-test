@@ -1,6 +1,7 @@
 div
 {
-
+    font-family: "Avenir Next", Verdana, "ƒqƒ‰ƒMƒmŠpƒS Pro W3", "Hiragino Kaku Gothic Pro",
+     "ŸàƒSƒVƒbƒN", "Yu Gothic", "ƒƒCƒŠƒI", Meiryo, Osaka, sans-serif;
 }
 #header
 {
@@ -14,16 +15,16 @@ div
     height:auto;
     border:solid 1px;
 }
-
 body
 {
 	transition-duration:1.2s;
+	background-color: #333;
+    color: #fff;
 }
-
 #boxA
 {
    font-size:14px;
-   width:970px;
+   width:1280px;
    height:auto;
    margin : auto;
    padding : 20px;
@@ -34,23 +35,32 @@ body
     margin :5px;
     padding:3px;
     border:solid 1px;
+    clear:both;
     }
         #q_title
         {
         text-align:center;
         }
-
-        li
+        #answer_1
         {
-        background-color:#00ffff;
-        width : 25%;
-        margin:5px;
+        float:left;
+        width:55%;
+        }
+        #answer_2
+        {
+        float:left;
+        width:20%;
+        }
+        #answer_3
+        {
+        float:left;
+        width:20%;
         }
     #box1
     {
     transition-duration:1s;
-    width:46.5%;
-    height:95%;
+    width:50.5%;
+    height:80.6%;
     margin:auto;
     border:solid 1px;
     float:left;
@@ -58,16 +68,17 @@ body
         #text_title
         {
         width:100%;
-        margin-bottom:5px;
         }
         #text_question
         {
+        font-family: "Avenir Next", Verdana, "ƒqƒ‰ƒMƒmŠpƒS Pro W3", "Hiragino Kaku Gothic Pro",
+        "ŸàƒSƒVƒbƒN", "Yu Gothic", "ƒƒCƒŠƒI", Meiryo, Osaka, sans-serif;
         width:100%;
-        height:80%;
         }
+
     #box2
     {
-    height:49.6%;
+    height:38%;
     width:46.5%;
     margin:auto;
     border:solid 1px;
@@ -92,7 +103,6 @@ body
     }
          #submit
          {
-
          width:100%;
          margin-top:38px;
          padding:30px 200px;
@@ -109,7 +119,6 @@ body
     }
     #footer
     {
-    height:10px;
     text-align:center;
     margin-top: auto;
     width:100%;
@@ -122,7 +131,17 @@ body
     color:#ff0000;
     margin-left:5px;
 }
-@media screen and (max-width: 980px) {
+#button{
+	font-family: "Avenir Next", Verdana, "ƒqƒ‰ƒMƒmŠpƒS Pro W3", "Hiragino Kaku Gothic Pro",
+	"ŸàƒSƒVƒbƒN", "Yu Gothic", "ƒƒCƒŠƒI", Meiryo, Osaka, sans-serif;
+	background-color: #333;
+    color: #fff;
+}
+#button:hover {
+	transition-duration:0.6s;
+    background-color: #59b1eb;
+}
+@media screen and (max-width: 1348px) {
    /* •\¦—Ìˆæ‚ª980pxˆÈ‰º‚Ìê‡‚É“K—p‚·‚éƒXƒ^ƒCƒ‹ */
    div#header
    {
@@ -130,7 +149,7 @@ body
    }
 	   div#boxA
 	   {
-	   width: 90%;
+	   width: 95%;
 	   height:auto;
 	   }
 	       div#box1

@@ -15,9 +15,9 @@
     <div id = "boxA">
      <div id="box1">
         <p>タイトルを入力してください。<form:errors path="title" id = "error"/></p>
-        <input type = "text" size = 30 id = "text_title" name = "title">
+        <input type = "text" size = 30 maxlength="30" id = "text_title" name = "title">
         <p>問題の本文を入力してください。<form:errors path="text" id = "error"/></p>
-        <TEXTAREA name = "text" wrap = "soft" id = "text_question" name = "text"></TEXTAREA>
+        <TEXTAREA name = "text" maxlength="200" id = "text_question" name = "text" style="resize:none;"></TEXTAREA>
      </div>
      <div id = "box2">
      <c:forEach begin="1" end="4" step="1" varStatus="status">

@@ -18,23 +18,29 @@
             <div id="q_title"><h1>第${status.index+1}問</h1></div>
             <p>${entry.title}</p><p>${entry.text}</p><!-- 設問本文 -->
             <c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
-                 <label><input type = "${button}" name = "ans${status.index}" value = "${entry.select1}"> ${entry.select1}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = "${entry.select2}"> ${entry.select2}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = "${entry.select3}"> ${entry.select3}</label><br>
-                 <label><input type = "${button}" name = "ans${status.index}" value = "${entry.select4}"> ${entry.select4}</label><br>
-         	</c:forEach>
-            <c:forEach items="${list}" var="list" begin = "${status.index}" end="${status.index}">
-               あなたの答え：${list}
-           	</c:forEach>
-          </div>
+            <c:if test = "${button=='checkbox'}">
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-2" value = "check2"> ${entry.select2}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-3" value = "check3"> ${entry.select3}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-4" value = "check4"> ${entry.select4}</label><br>
+            </c:if>
+            <c:if test = "${button=='radio'}">
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check2"> ${entry.select2}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check3"> ${entry.select3}</label><br>
+                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check4"> ${entry.select4}</label><br>
+            </c:if>
+            </c:forEach>
+            </div>
       </c:forEach>
       <div id = "questions">
-      <input type = "submit" value = "答え合わせ">
-      <input type = "button" value = "登録画面へ" onClick ="location.href='http://localhost:8080/test/'">
+      <input type = "submit" value = "答え合わせ" id = "button">
+      <input type = "button" value = "登録画面へ" onClick ="location.href='http://localhost:8080/test/'" id = "button">
       </div>
 </div>
 <div id = "footer">${delete}<br>
       <a href = "http://localhost:8080/test/">君も問題を作ろう</a></div>
+<input type = "hidden" name = "button" value ="${button}">
 </form:form>
 </body>
 </html>
