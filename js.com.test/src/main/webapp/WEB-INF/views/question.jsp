@@ -40,6 +40,7 @@
 </div>
 <div id = "footer"><a href='http://localhost:8080/test/'>君も問題を作ろう！</a></div>
 ${delete}
+<input type = "hidden" name = "button" value ="${button}">
 </form:form>
 </body>
 </html>

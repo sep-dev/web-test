@@ -35,14 +35,26 @@ body
     margin :5px;
     padding:3px;
     border:solid 1px;
+    clear:both;
     }
         #q_title
         {
         text-align:center;
         }
-
-        label
+        #answer_1
         {
+        float:left;
+        width:55%;
+        }
+        #answer_2
+        {
+        float:left;
+        width:20%;
+        }
+        #answer_3
+        {
+        float:left;
+        width:20%;
         }
     #box1
     {
@@ -63,6 +75,7 @@ body
         "游ゴシック", "Yu Gothic", "メイリオ", Meiryo, Osaka, sans-serif;
         width:100%;
         }
+
     #box2
     {
     height:38%;

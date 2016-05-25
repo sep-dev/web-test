@@ -105,18 +105,21 @@ public class HomeController {
 	@RequestMapping(value = "/Q", method = RequestMethod.POST)
 	public String home(FormModel fm, Model model, HttpServletRequest request,HttpServletResponse response)
 	        throws Exception {
+	    List<Map<String,Object>> entrylist = jdbcTemplate.queryForList("select * from entrytbl");
+	    List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
+        model.addAttribute("entrylist",entrylist);
+        model.addAttribute("checklist",checklist);
 	    List<Integer> ans1 = new ArrayList<Integer>();
 	    List<Integer> ans2 = new ArrayList<Integer>();
 	    List<Integer> ans3 = new ArrayList<Integer>();
 	    List<Integer> ans4 = new ArrayList<Integer>();
-	    List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
+
 	    for(Integer i=0;i<checklist.size();i++){
 	        String s1 = request.getParameter("ans"+i+"-1");
 	        String s2 = request.getParameter("ans"+i+"-2");
 	        String s3 = request.getParameter("ans"+i+"-3");
 	        String s4 = request.getParameter("ans"+i+"-4");
-                //ラジオボタンの場合
-             if(s1!=null&&s2==null&&s3==null&&s4==null){
+             if(s1!=null&&s2==null&&s3==null&&s4==null){ //ラジオボタンの判定
                  if("check1".equals(s1)){
                      ans1.add(1);
                      ans2.add(0);
@@ -161,25 +164,22 @@ public class HomeController {
                  }
              }
 
-            System.out.print("\n"+s1+"    "+ans1.get(i)+"\n");
-            System.out.print(s2+"    "+ans2.get(i)+"\n");
-            System.out.print(s3+"    "+ans3.get(i)+"\n");
-            System.out.print(s4+"    "+ans4.get(i)+"\n");
+            model.addAttribute("ans1", ans1);
+            model.addAttribute("ans2", ans2);
+            model.addAttribute("ans3", ans3);
+            model.addAttribute("ans4", ans4);
 	    }
 
-	return "redirect:/A";
+	return "answer";
 	 }
 	@RequestMapping(value = "/A", method = RequestMethod.GET)
 	public String answer( FormModel fm,Model model, HttpServletRequest request,HttpServletResponse response)
             throws Exception {
-		List<Map<String,Object>>entrylist = jdbcTemplate.queryForList("select * from entrytbl");
-		List<Map<String,Object>>checklist = jdbcTemplate.queryForList("select * from checktbl");
 
-		model.addAttribute("entrylist",entrylist);
-		model.addAttribute("checklist",checklist);
 
-		return "answer";
+        return "answer";
 	}
+
    @RequestMapping(value = "/A", method = RequestMethod.POST)
     public String answer_form(FormModel fm, Model model) {
     return "question";
