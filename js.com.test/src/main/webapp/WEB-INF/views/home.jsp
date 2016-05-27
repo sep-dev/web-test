@@ -7,7 +7,6 @@
 <head>
  <title>出題画面</title>
     <meta charset="UTF-8">
-    <style type="text/css"><%@include file="../css/view.css" %></style>
 </head>
 <body>
     <form:form modelAttribute="formModel">
@@ -15,14 +14,16 @@
     <div id = "boxA">
      <div id="box1">
         <p>タイトルを入力してください。<form:errors path="title" id = "error"/></p>
-        <input type = "text" size = 30 maxlength="30" id = "text_title" name = "title">
+        <input type = "text" size = 30 maxlength="30" id = "text_title" name = "title" class="validate[required]">
         <p>問題の本文を入力してください。<form:errors path="text" id = "error"/></p>
-        <TEXTAREA name = "text" maxlength="200" id = "text_question" name = "text" style="resize:none;"></TEXTAREA>
+        <TEXTAREA name = "text" maxlength="200" id = "text_question" name = "text"
+        class="validate[required]" style="resize:none;"></TEXTAREA>
      </div>
      <div id = "box2">
      <c:forEach begin="1" end="4" step="1" varStatus="status">
-        <p>選択肢${status.index}<form:errors path="select${status.index}" id="error" /></p>
-        <input type = "text" name= "select${status.index}" id = "select" name ="select${status.index}"><input type = "checkbox" id = "check" name = "check${status.index}">
+        <p id = "select">選択肢${status.index}<form:errors path="select${status.index}" id="error" /></p>
+        <input type = "text" name= "select${status.index}" id = "select" name ="select${status.index}"
+        size = 30 maxlength="30" class="validate[required]"><input type = "checkbox" id = "check" name = "check${status.index}">
      <br>
      </c:forEach>
      <p  id= "error">${message1}</p>
@@ -37,3 +38,18 @@
 </form:form>
 </body>
 </html>
+
+<style type="text/css"><%@include file="../css/view.css" %></style>
+<style type="text/css"><%@include file="../css/validationEngine.jquery.css" %></style>
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+<script src="js/jquery.validationEngine-ja.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+(function(){
+
+
+});
+</script>
+

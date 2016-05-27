@@ -37,23 +37,23 @@
           <div id = "box4"></div>
 	      </div>
 	      <p>${entry.title}</p>
-	      <p>${entry.text}</p><!-- 設問本文 -->
+	      <p style = "word-wrap: break-word;">${entry.text}</p><!-- 設問本文 -->
 	              <div id = "answer">
 		                <label style = "color:FF0000;"><c:if test = "${checklist.check1=='0'}">× ${entry.select1}</c:if></label>
                                         <label><c:if test = "${checklist.check1=='1'}">○ ${entry.select1}</c:if></label>
-                        <label style = ""><c:if test = "${ans1=='1'}">←あなたが選んだヤツ</c:if></label><br>
+                        <label style = ""><c:if test = "${ans1=='1'}">←あなたが選んだ答え</c:if></label><br>
 
                         <label style = "color:FF0000;"><c:if test = "${checklist.check2=='0'}">× ${entry.select2}</c:if></label>
                                         <label><c:if test = "${checklist.check2=='1'}">○ ${entry.select2}</c:if></label>
-                        <label style = ""><c:if test = "${ans2=='1'}">←あなたが選んだヤツ</c:if></label><br>
+                        <label style = ""><c:if test = "${ans2=='1'}">←あなたが選んだ答え</c:if></label><br>
 
                         <label style = "color:FF0000;"><c:if test = "${checklist.check3=='0'}">× ${entry.select3}</c:if></label>
                                         <label><c:if test = "${checklist.check3=='1'}">○ ${entry.select3}</c:if></label>
-                        <label style = ""><c:if test = "${ans3=='1'}">←あなたが選んだヤツ</c:if></label><br>
+                        <label style = ""><c:if test = "${ans3=='1'}">←あなたが選んだ答え</c:if></label><br>
 
                         <label style = "color:FF0000;"><c:if test = "${checklist.check4=='0'}">× ${entry.select4}</c:if></label>
                                         <label><c:if test = "${checklist.check4=='1'}">○ ${entry.select4}</c:if></label>
-                        <label style = ""><c:if test = "${ans4=='1'}">←あなたが選んだヤツ</c:if></label><br>
+                        <label style = ""><c:if test = "${ans4=='1'}">←あなたが選んだ答え</c:if></label><br>
 		          </div>
         <div id = "box4"></div>
                 </div>
@@ -65,18 +65,21 @@
          </c:forEach>
 
          <div id = "questions">
-         <input type = "button" value = "問題にもどる" id = "button" onClick ="history.go(-1)" >
-         <input type = "button" value = "登録画面へ" onClick ="location.href='http://localhost:8080/test/'" id = "button">
-     </div>
-          </div>
-
-
-
-
-
-
+	         <input type = "button" value = "問題にもどる" id = "button" onClick ="history.go(-1)" >
+	         <input type = "button" value = "登録画面へ" onClick ="location.href='http://localhost:8080/test/'" id = "button">
+         </div>
+    </div>
 <div id = "footer"><a href='http://localhost:8080/test/'>君も問題を作ろう！</a></div>
 ${delete}
 </form:form>
 </body>
 </html>
+
+<style type="text/css"><%@include file="../css/view.css" %></style>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../js/val.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+</script>

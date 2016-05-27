@@ -19,6 +19,7 @@
             <div id = "box4"></div>
             </div>
             <p>${entry.title}</p><!-- 設問本文 -->
+            <p style = "word-wrap: break-word;">${entry.text}</p><!-- 設問本文 -->
             <c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
             <c:if test = "${button=='checkbox'}">
                  <label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
@@ -32,8 +33,9 @@
                  <label><input type = "${button}" name = "ans${status.index}-1" value = "check3"> ${entry.select3}</label><br>
                  <label><input type = "${button}" name = "ans${status.index}-1" value = "check4"> ${entry.select4}</label><br>
             </c:if>
+
             </c:forEach>
-            </div>
+         </div>
       </c:forEach>
       <div id = "questions">
       <input type = "submit" value = "答え合わせ" id = "button">

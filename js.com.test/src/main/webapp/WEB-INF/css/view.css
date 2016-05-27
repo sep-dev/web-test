@@ -32,6 +32,7 @@ body
 }
     #question/*ñ‚ëËâÊñ êÍóp*/
     {
+    transition-duration:1.2s;
     margin :5px;
     padding:3px;
     border:solid 1px;
@@ -41,10 +42,10 @@ body
         {
         text-align:right;
         }
-            #daimon{
-            width:55.5%;
-            float:left;
-            }
+        #daimon{
+        width:55.5%;
+        float:left;
+        }
         #answer
         {
         float:left;
@@ -64,25 +65,30 @@ body
     {
     transition-duration:1s;
     width:50.5%;
-    height:80.6%;
+    height:78.6%;
     margin:auto;
     border:solid 1px;
     float:left;
     }
         #text_title
         {
-        width:100%;
+        width:90%;
+        margin-left:4%;
+        margin-right:4%;
         }
         #text_question
         {
         font-family: "Avenir Next", Verdana, "ÉqÉâÉMÉmäpÉS Pro W3", "Hiragino Kaku Gothic Pro",
         "ü‡ÉSÉVÉbÉN", "Yu Gothic", "ÉÅÉCÉäÉI", Meiryo, Osaka, sans-serif;
-        width:100%;
+        width:90%;
+        height:600px;
+        margin-left:4%;
+        margin-right:4%;
         }
 
     #box2
     {
-    height:38%;
+    height:36%;
     width:46.5%;
     margin:auto;
     border:solid 1px;
@@ -91,6 +97,8 @@ body
          #select
          {
          margin:8px;
+         margin-right:10%;
+         margin-left:10%;
          width:75%;
          }
          #check
@@ -149,18 +157,19 @@ label{
     background-color: #59b1eb;
 }
 .seikai{/*ê≥âÇÃÇ∆Ç´*/
+transition-duration:0.6s;
 float:right;
 margin: 0;
 margin-right:15%;
 padding: 10px;
 width: 65px;
 height: 65px;
-border: 8px double #FFFFFF;
+border: 8px double #FF0000;
 -webkit-border-radius: 50%;
 -moz-border-radius: 50%;
 border-radius: -50%;
 color: #FFFFFF;
-background-color:FF3333;
+background-color:FFFFFF;
 text-align: center;
 font-size: 13px;
 line-height: 65px;
@@ -168,9 +177,9 @@ line-height: 65px;
 -ms-transform: rotate(16deg);
 transform: rotate(16deg);
 opacity:0.7;
-
 }
 .fuseikai{
+transition-duration:0.6s;
 float:right;
 margin: 0;
 margin-right:15%;
@@ -212,16 +221,33 @@ opacity:0.7;
 	       width:98%;
 	       float:none;
 	       }
-	       div#box2
-	       {
-	       padding :10px 5px 40px 5px;
-	       width:98%;
-	       float:none;
-	       }
-	       div#box3
-	       {
-	       padding :10px 5px 40px 5px;
-	       width:98%;
-	       float:none;
-	       }
+	        #text_title
+            {
+             width:80%;
+             margin-left:9%;
+             margin-right:9%;
+             }
+             #text_question
+            {
+	        font-family: "Avenir Next", Verdana, "ÉqÉâÉMÉmäpÉS Pro W3", "Hiragino Kaku Gothic Pro",
+	        "ü‡ÉSÉVÉbÉN", "Yu Gothic", "ÉÅÉCÉäÉI", Meiryo, Osaka, sans-serif;
+	        width:80%;
+	        height:300px;
+	        margin-left:9%;
+	        margin-right:9%;
+	        }
+       div#box2
+       {
+       padding :10px 5px 40px 5px;
+       width:98%;
+       height:auto;
+       float:none;
+       }
+       div#box3
+       {
+       padding :10px 5px 40px 5px;
+       width:98%;
+       height:auto;
+       float:none;
+       }
 }

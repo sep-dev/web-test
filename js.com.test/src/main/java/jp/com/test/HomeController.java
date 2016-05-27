@@ -169,6 +169,7 @@ public class HomeController {
             model.addAttribute("ans3", ans3);
             model.addAttribute("ans4", ans4);
 	    }
+	    model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
 
 	return "answer";
 	 }
