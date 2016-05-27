@@ -76,10 +76,3 @@ ${delete}
 </html>
 
 <style type="text/css"><%@include file="../css/view.css" %></style>
-<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="../js/val.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript">
-
-
-</script>

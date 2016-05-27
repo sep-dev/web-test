@@ -14,7 +14,7 @@
     <div id = "boxA">
      <div id="box1">
         <p>タイトルを入力してください。<form:errors path="title" id = "error"/></p>
-        <input type = "text" size = 30 maxlength="30" id = "text_title" name = "title" class="validate[required]">
+        <input type = "text" size = 30 maxlength="30" id = "text_title" name = "title">
         <p>問題の本文を入力してください。<form:errors path="text" id = "error"/></p>
         <TEXTAREA name = "text" maxlength="200" id = "text_question" name = "text"
         class="validate[required]" style="resize:none;"></TEXTAREA>
@@ -29,6 +29,7 @@
      <p  id= "error">${message1}</p>
      </div>
      <div id = "box3">
+     <input type = "button" id = "button">
      <input type = "submit" value = "送信" id = "button"><br>
      <input type = "button" value = "作った問題へ" onClick ="location.href='http://localhost:8080/test/Q'" id = "button">
      </div>
@@ -40,15 +41,27 @@
 </html>
 
 <style type="text/css"><%@include file="../css/view.css" %></style>
-<style type="text/css"><%@include file="../css/validationEngine.jquery.css" %></style>
-<script src="js/jquery-1.8.2.min.js"></script>
-<script src="js/jquery.validationEngine.js"></script>
-<script src="js/jquery.validationEngine-ja.js"></script>
+<style type="text/css"><%@include file="../css/validate.css" %></style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript">
+ $( function() {
+	 $("input").css("border", "3px solid red");
+	 $("textarea").css("border", "3px solid red");
+	 $("#check").css("border", "3px solid red");
+	 $( '#button' ) .click(
+	        function() {
+	        	var title = $("#text_title").val();
+	        	var text = $("#text_question").val();
+	        	 if('test' == 'title'){
+	        		 alert('aaaaaaaa');
+	        	 } else {
+	        		 alert(title+" "+text+'　だめ');
+	        	 }
+	        })
+	 $(document).ready(function(){
+		   alert("jQueryファイルの読み込み完了でーす。");
+		 });
 
-(function(){
-
-});
+ });
 </script>
 
