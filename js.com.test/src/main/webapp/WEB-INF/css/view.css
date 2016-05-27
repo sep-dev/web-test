@@ -94,7 +94,7 @@ body
     border:solid 1px;
     float:right;
     }
-         #select
+         #select1,#select2,#select3,#select4
          {
          margin:8px;
          margin-right:10%;
@@ -169,7 +169,6 @@ border: 8px double #FF0000;
 -moz-border-radius: 50%;
 border-radius: -50%;
 color: #FFFFFF;
-background-color:FFFFFF;
 text-align: center;
 font-size: 13px;
 line-height: 65px;
@@ -191,7 +190,6 @@ border: 8px double #FFFFFF;
 -moz-border-radius: 50%;
 border-radius: -50%;
 color: #FFFFFF;
-background-color:3333FF;
 text-align: center;
 font-size: 13px;
 line-height: 65px;

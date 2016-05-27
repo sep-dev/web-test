@@ -14,23 +14,22 @@
     <div id = "boxA">
      <div id="box1">
         <p>タイトルを入力してください。<form:errors path="title" id = "error"/></p>
-        <input type = "text" size = 30 maxlength="30" id = "text_title" name = "title">
+        <input type = "text" size = 30 maxlength="30" id = "text_title" name = "title" class="validate[required]">
         <p>問題の本文を入力してください。<form:errors path="text" id = "error"/></p>
         <TEXTAREA name = "text" maxlength="200" id = "text_question" name = "text"
-        class="validate[required]" style="resize:none;"></TEXTAREA>
+         style="resize:none;"></TEXTAREA>
      </div>
      <div id = "box2">
      <c:forEach begin="1" end="4" step="1" varStatus="status">
         <p id = "select">選択肢${status.index}<form:errors path="select${status.index}" id="error" /></p>
-        <input type = "text" name= "select${status.index}" id = "select" name ="select${status.index}"
+        <input type = "text" name= "select${status.index}" id = "select${status.index}" name ="select${status.index}"
         size = 30 maxlength="30" class="validate[required]"><input type = "checkbox" id = "check" name = "check${status.index}">
      <br>
      </c:forEach>
      <p  id= "error">${message1}</p>
      </div>
      <div id = "box3">
-     <input type = "button" id = "button">
-     <input type = "submit" value = "送信" id = "button"><br>
+     <input type = "submit" value = "送信" id = "submit"><br>
      <input type = "button" value = "作った問題へ" onClick ="location.href='http://localhost:8080/test/Q'" id = "button">
      </div>
      <div id= "box4"></div>
@@ -41,27 +40,80 @@
 </html>
 
 <style type="text/css"><%@include file="../css/view.css" %></style>
-<style type="text/css"><%@include file="../css/validate.css" %></style>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
- $( function() {
-	 $("input").css("border", "3px solid red");
-	 $("textarea").css("border", "3px solid red");
-	 $("#check").css("border", "3px solid red");
-	 $( '#button' ) .click(
-	        function() {
-	        	var title = $("#text_title").val();
-	        	var text = $("#text_question").val();
-	        	 if('test' == 'title'){
-	        		 alert('aaaaaaaa');
-	        	 } else {
-	        		 alert(title+" "+text+'　だめ');
-	        	 }
-	        })
-	 $(document).ready(function(){
-		   alert("jQueryファイルの読み込み完了でーす。");
-		 });
+$(function() {
+	var inputCountMax = 50;
+    var textareaCountMax = 120;
 
- });
+    if ($('#text_title').val().length == 0) {
+        $('#submit').attr('disabled', 'disabled');
+    }
+    if ($('#text_question').val().length == 0) {
+        $('#submit').attr('disabled', 'disabled');
+    }
+    if ($('#select').val().length == 0) {
+        $('#submit').attr('disabled', 'disabled');
+    }
+    $('#text_title').bind('keydown keyup keypress change', function() {
+    	if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+                && $('#select1').val().length > 0&& $('#select2').val().length > 0
+                && $('#select3').vzal().length > 0&& $('#select4').val().length > 0) {
+            $('#submit').removeAttr('disabled');
+        }else {
+            $('#submit').attr('disabled', 'disabled');
+        }
+    });
+    $('#text_question').bind('keydown keyup keypress change', function() {
+    	if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+                && $('#select1').val().length > 0&& $('#select2').val().length > 0
+                && $('#select3').val().length > 0&& $('#select4').val().length > 0) {
+            $('#submit').removeAttr('disabled');
+        }else if((this).val().length > 0 ){
+
+        }else {
+            $('#submit').attr('disabled', 'disabled');
+        }
+    });
+
+    $('#select1').bind('keydown keyup keypress change', function() {
+    	if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+                && $('#select1').val().length > 0&& $('#select2').val().length > 0
+                && $('#select3').val().length > 0&& $('#select4').val().length > 0) {
+            $('#submit').removeAttr('disabled');
+        }else if((this).val().length > 0 ){
+
+        }else {
+            $('#submit').attr('disabled', 'disabled');
+        }
+    });
+    $('#select2').bind('keydown keyup keypress change', function() {
+        if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+                && $('#select1').val().length > 0&& $('#select2').val().length > 0
+                && $('#select3').val().length > 0&& $('#select4').val().length > 0) {
+            $('#submit').removeAttr('disabled');
+        } else {
+            $('#submit').attr('disabled', 'disabled');
+        }
+    });
+    $('#select3').bind('keydown keyup keypress change', function() {
+        if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+                && $('#select1').val().length > 0&& $('#select2').val().length > 0
+                && $('#select3').val().length > 0&& $('#select4').val().length > 0) {
+            $('#submit').removeAttr('disabled');
+        } else {
+            $('#submit').attr('disabled', 'disabled');
+        }
+    });
+    $('#select4').bind('keydown keyup keypress change', function() {
+        if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+                && $('#select1').val().length > 0&& $('#select2').val().length > 0
+                && $('#select3').val().length > 0&& $('#select4').val().length > 0) {
+            $('#submit').removeAttr('disabled');
+        } else {
+            $('#submit').attr('disabled', 'disabled');
+        }
+    });
+});
+
 </script>
-
