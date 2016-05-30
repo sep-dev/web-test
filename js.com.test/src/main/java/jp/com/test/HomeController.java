@@ -35,7 +35,8 @@ public class HomeController {
        model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
        if(result.hasErrors()){
            return "home";
-       }else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
+       }
+       else if (fm.isCheck1() == false & fm.isCheck2()== false & fm.isCheck3() == false &
                fm.isCheck4() == false){
            model.addAttribute("message1", "真実はいつもひとつ。");
            return "home";
@@ -163,12 +164,12 @@ public class HomeController {
                      ans4.add(0);
                  }
              }
-
             model.addAttribute("ans1", ans1);
             model.addAttribute("ans2", ans2);
             model.addAttribute("ans3", ans3);
             model.addAttribute("ans4", ans4);
 	    }
+	    model.addAttribute("delete", "<input type = \"button\" value =\"問題の全削除\" onClick = \"location.href='http://localhost:8080/test/Alldelete'\" >");
 
 	return "answer";
 	 }

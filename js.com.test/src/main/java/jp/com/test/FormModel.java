@@ -1,7 +1,5 @@
 package jp.com.test;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class FormModel {
    //正否の判定
     private boolean check1;
@@ -37,17 +35,17 @@ public class FormModel {
 
 
     //入力フォームの内容
-    @NotEmpty(message  = "タイトルを入力してください。")
+//    @NotEmpty(message  = "タイトルを入力してください。")
     private String title;
-    @NotEmpty(message = "本文を入力してください。")
+//    @NotEmpty(message = "本文を入力してください。")
     private String text;
-    @NotEmpty(message = "選択肢は全て入力してください。")
+//    @NotEmpty(message = "選択肢は全て入力してください。")
     private String select1;
-    @NotEmpty(message = "選択肢は全て入力してください。")
+//    @NotEmpty(message = "選択肢は全て入力してください。")
     private String select2;
-    @NotEmpty(message = "選択肢は全て入力してください。")
+//    @NotEmpty(message = "選択肢は全て入力してください。")
     private String select3;
-    @NotEmpty(message = "選択肢は全て入力してください。")
+//    @NotEmpty(message = "選択肢は全て入力してください。")
     private String select4;
 
     public String getTitle() {
@@ -111,7 +109,6 @@ public class FormModel {
     }
 
     //汎用終わり
-    //答え合わせで使う
 
 
 }

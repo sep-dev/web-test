@@ -13,12 +13,20 @@
 <div id ="header"><h1>webテスト<br>問題集</h1></div>
 <form:form modelAttribute= "formModel">
 <div id = "boxA">
+    <!-- 問題が登録されていない場合 -->
+    <c:if test = "${entrylist==\"[]\"}">
+    <div id= "question" style = "text-align:center;">
+    問題が登録されていません。
+    </div>
+    </c:if>
+    <!-- ここまで -->
       <c:forEach items = "${entrylist}" var = "entry" varStatus = "status">
         <div id="question"><!-- 出題テンプレート -->
             <div id="q_title"><h1 id = "daimon">第${status.index+1}問</h1>
             <div id = "box4"></div>
             </div>
-            <p>${entry.title}</p><p>${entry.text}</p><!-- 設問本文 -->
+            <p>${entry.title}</p><!-- 設問本文 -->
+            <p style = "word-wrap: break-word;">${entry.text}</p><!-- 設問本文 -->
             <c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
             <c:if test = "${button=='checkbox'}">
                  <label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
@@ -33,7 +41,7 @@
                  <label><input type = "${button}" name = "ans${status.index}-1" value = "check4"> ${entry.select4}</label><br>
             </c:if>
             </c:forEach>
-            </div>
+         </div>
       </c:forEach>
       <div id = "questions">
       <input type = "submit" value = "答え合わせ" id = "button">
