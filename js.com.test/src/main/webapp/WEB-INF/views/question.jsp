@@ -28,7 +28,6 @@
            <div id = "box4"></div>
            </div>
            <p>${entry.title}</p><!-- 設問本文 -->
-           <form action = "http://localhost:8080/test/D" method ="POST">
            <p style = "word-wrap: break-word;">${entry.text}</p><!-- 設問本文 -->
            <c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
            <c:if test = "${button=='checkbox'}">
@@ -44,7 +43,6 @@
                 <label><input type = "${button}" name = "ans${status.index}-1" value = "check4"> ${entry.select4}</label><br>
            </c:if>
            <label><input type = "submit"  id ="button" value = "この問題を削除" formaction='http://localhost:8080/test/D'><input type = "hidden" name= "id" value = "${entry.id}"></label>
-           </form>
            </c:forEach>
         </div>
      </c:forEach>

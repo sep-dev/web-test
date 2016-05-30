@@ -199,7 +199,7 @@ public class HomeController {
     @RequestMapping(value = "/D" , method = RequestMethod.POST)
     public String delete (FormModel fm,Model model, HttpServletRequest request,HttpServletResponse response)
             throws Exception{
-
+      System.out.print(request.getParameter("id"));
       jdbcTemplate.update("delete from Entrytbl where id ="+request.getParameter("id"));
       jdbcTemplate.update("delete from Checktbl where id = "+request.getParameter("id"));
     return "redirect:/Q";
