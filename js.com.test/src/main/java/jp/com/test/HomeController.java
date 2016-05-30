@@ -54,14 +54,14 @@ public class HomeController {
        }
     }
    @RequestMapping(value = "/Alldelete" , method = RequestMethod.GET)
-     public String delete (Model model){
+     public String All_delete (Model model){
        model.addAttribute("message1", "本当に削除してもよろしかったでしょうか？");
-       model.addAttribute("message2", "データを全て消去します。");
+       model.addAttribute("message2", "すべてを消し去ります。");
        model.addAttribute("message3", "<input type =submit value =\"実行\">");
        return "kakunin";
    }
    @RequestMapping(value = "/Alldelete" , method = RequestMethod.POST)
-   public String delete (FormModel fm,Model model){
+   public String All_delete (FormModel fm,Model model){
        jdbcTemplate.update("delete from Entrytbl");
        jdbcTemplate.update("delete from Checktbl");
        jdbcTemplate.update("ALTER TABLE Entrytbl AUTO_INCREMENT = 1");
@@ -185,5 +185,23 @@ public class HomeController {
     public String answer_form(FormModel fm, Model model) {
     return "question";
      }
+    @RequestMapping(value = "/D" , method = RequestMethod.GET)
+    public String delete (Model model, HttpServletRequest request,HttpServletResponse response)
+            throws Exception{
+      model.addAttribute("id",request.getParameter("id"));
+      System.out.print(request.getParameter("id"));
+      model.addAttribute("message1", "本当に削除してもよろしかったでしょうか？");
+      model.addAttribute("message2", "以下の問題を削除します。");
+      model.addAttribute("message3", "<input type =submit value =\"実行\">");
+      response.getWriter();
+      return "kakunin";
+    }
+    @RequestMapping(value = "/D" , method = RequestMethod.POST)
+    public String delete (FormModel fm,Model model, HttpServletRequest request,HttpServletResponse response)
+            throws Exception{
 
+      jdbcTemplate.update("delete from Entrytbl where id ="+request.getParameter("id"));
+      jdbcTemplate.update("delete from Checktbl where id = "+request.getParameter("id"));
+    return "redirect:/Q";
+    }
 }
