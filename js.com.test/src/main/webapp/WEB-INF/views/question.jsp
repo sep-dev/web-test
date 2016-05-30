@@ -13,6 +13,13 @@
 <div id ="header"><h1>webテスト<br>問題集</h1></div>
 <form:form modelAttribute= "formModel">
 <div id = "boxA">
+    <!-- 問題が登録されていない場合 -->
+    <c:if test = "${entrylist==\"[]\"}">
+    <div id= "question" style = "text-align:center;">
+    問題が登録されていません。
+    </div>
+    </c:if>
+    <!-- ここまで -->
       <c:forEach items = "${entrylist}" var = "entry" varStatus = "status">
         <div id="question"><!-- 出題テンプレート -->
             <div id="q_title"><h1 id = "daimon">第${status.index+1}問</h1>

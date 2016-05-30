@@ -88,7 +88,7 @@ body
 
     #box2
     {
-    height:36%;
+    height:45%;
     width:46.5%;
     margin:auto;
     border:solid 1px;
@@ -107,7 +107,7 @@ body
     #box3
     {
     transition-duration:1s;
-    height:40.5%;
+    height:30.5%;
     width:46.5%;
     margin:auto;
     margin-top:2%;
