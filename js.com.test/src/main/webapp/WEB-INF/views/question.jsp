@@ -33,7 +33,6 @@
                  <label><input type = "${button}" name = "ans${status.index}-1" value = "check3"> ${entry.select3}</label><br>
                  <label><input type = "${button}" name = "ans${status.index}-1" value = "check4"> ${entry.select4}</label><br>
             </c:if>
-
             </c:forEach>
          </div>
       </c:forEach>

@@ -84,7 +84,7 @@ $(function() {
     });
     //問題本文の入力チェック
     $('#text_question').bind('keydown keyup keypress change', function() {
-        if ($(this).val().length > 0 ){
+      if ($(this).val().length > 0 ){
             $("#span_text").text("");
       }else{
            $("#span_text").text("問題の本文を入力してください。");
@@ -139,5 +139,89 @@ $(function() {
         }
     });
 });
-
+	//チェックボックスの入力チェック
+	$('#check1').bind('keydown keyup keypress change', function() {
+	    if ($(this).prop("checked")){
+	          $("#span_check").text("");
+	    }else if(!$('#check1').prop("checked")&&!$('#check2').prop("checked")&&!$('#check3').prop("checked")
+	    		&&!$('#check4').prop("checked")){
+	         $("#span_check").text("問題の本文を入力してください。");
+	    }
+	    if($('#check1').prop("checked")&&$('#check2').prop("checked")&&$('#check3').prop("checked")
+	    		&&$('#check4').prop("checked")){
+	    	 $("#span_check").text("正解に設定できる選択肢は３つまでです。");
+	    }
+	    if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+	            && $('#select1').val().length > 0&& $('#select2').val().length > 0
+	            && $('#select3').val().length > 0&& $('#select4').val().length > 0) {
+	        $('#submit').removeAttr('disabled');
+	        $("#span_text").removeAttr();
+	    }else {
+	        $('#span_text').span("問題の本文を入力してください。");
+	        $('#submit').attr('disabled', 'disabled');
+	    }
+	});
+	   $('#check2').bind('keydown keyup keypress change', function() {
+	        if ($(this).prop("checked")){
+	              $("#span_check").text("");
+	        }else if(!$('#check1').prop("checked")&&!$('#check2').prop("checked")&&!$('#check3').prop("checked")
+	                &&!$('#check4').prop("checked")){
+	             $("#span_check").text("問題の本文を入力してください。");
+	        }
+	        if($('#check1').prop("checked")&&$('#check2').prop("checked")&&$('#check3').prop("checked")
+	                &&$('#check4').prop("checked")){
+	             $("#span_check").text("正解に設定できる選択肢は３つまでです。");
+	        }
+	        if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+	                && $('#select1').val().length > 0&& $('#select2').val().length > 0
+	                && $('#select3').val().length > 0&& $('#select4').val().length > 0) {
+	            $('#submit').removeAttr('disabled');
+	            $("#span_text").removeAttr();
+	        }else {
+	            $('#span_text').span("問題の本文を入力してください。");
+	            $('#submit').attr('disabled', 'disabled');
+	        }
+	    });
+	    $('#check3').bind('keydown keyup keypress change', function() {
+	        if ($(this).prop("checked")){
+	              $("#span_check").text("");
+	        }else if(!$('#check1').prop("checked")&&!$('#check2').prop("checked")&&!$('#check3').prop("checked")
+	                &&!$('#check4').prop("checked")){
+	             $("#span_check").text("問題の本文を入力してください。");
+	        }
+	        if($('#check1').prop("checked")&&$('#check2').prop("checked")&&$('#check3').prop("checked")
+	                &&$('#check4').prop("checked")){
+	             $("#span_check").text("正解に設定できる選択肢は３つまでです。");
+	        }
+	        if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+	                && $('#select1').val().length > 0&& $('#select2').val().length > 0
+	                && $('#select3').val().length > 0&& $('#select4').val().length > 0) {
+	            $('#submit').removeAttr('disabled');
+	            $("#span_text").removeAttr();
+	        }else {
+	            $('#span_text').span("問題の本文を入力してください。");
+	            $('#submit').attr('disabled', 'disabled');
+	        }
+	    });
+	    $('#check4').bind('keydown keyup keypress change', function() {
+	        if ($(this).prop("checked")){
+	              $("#span_check").text("");
+	        }else if(!$('#check1').prop("checked")&&!$('#check2').prop("checked")&&!$('#check3').prop("checked")
+	                &&!$('#check4').prop("checked")){
+	             $("#span_check").text("問題の本文を入力してください。");
+	        }
+	        if($('#check1').prop("checked")&&$('#check2').prop("checked")&&$('#check3').prop("checked")
+	                &&$('#check4').prop("checked")){
+	             $("#span_check").text("正解に設定できる選択肢は３つまでです。");
+	        }
+	        if ($('#text_title').val().length > 0 && $('#text_question').val().length > 0
+	                && $('#select1').val().length > 0&& $('#select2').val().length > 0
+	                && $('#select3').val().length > 0&& $('#select4').val().length > 0) {
+	            $('#submit').removeAttr('disabled');
+	            $("#span_text").removeAttr();
+	        }else {
+	            $('#span_text').span("問題の本文を入力してください。");
+	            $('#submit').attr('disabled', 'disabled');
+	        }
+	    });
 </script>
