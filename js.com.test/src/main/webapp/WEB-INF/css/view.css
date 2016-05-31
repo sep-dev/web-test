@@ -154,6 +154,10 @@ label{
 span{
 	color:red;
 }
+#prev, #next {
+  color: red;
+  cursor: pointer;
+}
 #button{
 	font-family: "Avenir Next", Verdana, "ƒqƒ‰ƒMƒmŠpƒS Pro W3", "Hiragino Kaku Gothic Pro",
 	"ŸàƒSƒVƒbƒN", "Yu Gothic", "ƒƒCƒŠƒI", Meiryo, Osaka, sans-serif;
