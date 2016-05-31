@@ -21,9 +21,7 @@
 		</c:if>
 		<!-- ここまで -->
 		<c:if test = "${!flg}">
-
 		<c:forEach items = "${entrylist}" var = "entry" varStatus = "status">
-		<c:if test ="${status.index%10==0}"><div></c:if>
 		<div id="question"><!-- 出題テンプレート -->
 		<div id="q_title"><h1 id = "daimon">第${status.index+1}問</h1>
 		<div id = "box4"></div>
@@ -31,23 +29,22 @@
 		<p>${entry.title}</p><!-- 設問本文 -->
 		<p style = "word-wrap: break-word;">${entry.text}</p><!-- 設問本文 -->
 		<c:forEach items = "${button}" var = "button" begin = "${status.index}" end="${status.index}">
-		<c:if test = "${button=='checkbox'}">
-		<label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
-		<label><input type = "${button}" name = "ans${status.index}-2" value = "check2"> ${entry.select2}</label><br>
-		<label><input type = "${button}" name = "ans${status.index}-3" value = "check3"> ${entry.select3}</label><br>
-		<label><input type = "${button}" name = "ans${status.index}-4" value = "check4"> ${entry.select4}</label><br>
-		</c:if>
-		<c:if test = "${button=='radio'}">
-		<label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
-		<label><input type = "${button}" name = "ans${status.index}-1" value = "check2"> ${entry.select2}</label><br>
-		<label><input type = "${button}" name = "ans${status.index}-1" value = "check3"> ${entry.select3}</label><br>
-		<label><input type = "${button}" name = "ans${status.index}-1" value = "check4"> ${entry.select4}</label><br>
-		</c:if>
-		<label><input type = "submit"  id ="button" name = "delete" value = "この問題を削除"
-		 formaction='http://localhost:8080/test/D'><input type = "hidden" name= "id" value = "${entry.id}"></label>
+			<c:if test = "${button=='checkbox'}">
+				<label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
+				<label><input type = "${button}" name = "ans${status.index}-2" value = "check2"> ${entry.select2}</label><br>
+				<label><input type = "${button}" name = "ans${status.index}-3" value = "check3"> ${entry.select3}</label><br>
+				<label><input type = "${button}" name = "ans${status.index}-4" value = "check4"> ${entry.select4}</label><br>
+			</c:if>
+			<c:if test = "${button=='radio'}">
+				<label><input type = "${button}" name = "ans${status.index}-1" value = "check1"> ${entry.select1}</label><br>
+				<label><input type = "${button}" name = "ans${status.index}-1" value = "check2"> ${entry.select2}</label><br>
+				<label><input type = "${button}" name = "ans${status.index}-1" value = "check3"> ${entry.select3}</label><br>
+				<label><input type = "${button}" name = "ans${status.index}-1" value = "check4"> ${entry.select4}</label><br>
+			</c:if>
+			<label><input type = "submit"  id ="button" name = "delete" value = "この問題を削除"
+			 formaction='http://localhost:8080/test/D'><input type = "hidden" name= "id" value = "${entry.id}"></label>
 		</c:forEach>
 		</div>
-		 <c:if test ="${status.index%10==0}"></div><!--一ページ分 --></c:if>
 		</c:forEach>
 		<div class = "pager"></div>
 		<div id = "question">
@@ -64,6 +61,7 @@
 </html>
 
 <style type="text/css"><%@include file="../css/view.css" %></style>
+<link href="css/pagination.css" rel="stylesheet" media="all" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript"><%@include file="../js/question.js" %></script>
 <script type="text/javascript"><%@include file="../js/jquery.pagination.js" %></script>
